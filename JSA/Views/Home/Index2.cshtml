@@ -1,0 +1,125 @@
+﻿@{
+    // Home page of the application
+    
+    ViewBag.Title = Resources.Global.GlobalSafeTaskAnalysisTitle;
+    Layout = "~/Views/Shared/_AgriLookLayout.cshtml";
+    ViewBag.CurrentURL = "~/Home/Index2?";
+    ViewBag.ModificationDate = "2012-04-13";
+}
+@section metadata{
+}
+@section CssStyle{
+    <style type="text/css">
+        .ASTList
+        {
+            vertical-align: middle;
+        }
+        
+        .button
+        {
+            padding: 4px 10px 3px 25px;
+            border: solid 1px #8AB134;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Arial;
+            background-image: url( "../images/degradevert.png" );
+            background-repeat: repeat-x;
+            font-size: 16px;
+            height: 2em;
+            text-decoration: none;
+            width: 23em;
+            color: Black;
+        }
+        .button img
+        {
+            position: absolute;
+            top: -4px;
+            left: -12px;
+            border: none;
+        }
+        .button:hover
+        {
+            color: #8AB134;
+        }
+    </style>
+}
+@section JavaScript{
+    <script type="text/javascript">
+
+        function redirecturl(choice) {
+            var s = '@Url.Content("~/JSA/")' + choice + "?lang=" + '@Resources.Global.GlobalCurrentLang';
+            location.href = s;
+        }
+
+        $(document).ready(function () {
+            $("#un").hover(function () {
+                $(this).stop().animate({ top: "-10px" }, 200);
+            }, function () {
+                $(this).stop().animate({ top: "0px" }, 300);
+            });
+            $("#deux").hover(function () {
+                $(this).stop().animate({ top: "-10px" }, 200);
+            }, function () {
+                $(this).stop().animate({ top: "0px" }, 300);
+            });
+            $("#trois").hover(function () {
+                $(this).stop().animate({ top: "-10px" }, 200);
+            }, function () {
+                $(this).stop().animate({ top: "0px" }, 300);
+            });
+            $("#quatre").hover(function () {
+                $(this).stop().animate({ top: "-10px" }, 200);
+            }, function () {
+                $(this).stop().animate({ top: "0px" }, 300);
+            });
+        }); 
+
+    </script>
+}
+<br />
+<h1>
+    Introduction</h1>
+<p>@Resources.Global.HomeIndex2Desc1</p>
+<p>@Resources.Global.HomeIndex2Desc2</p>
+<p>@Resources.Global.HomeIndex2Desc3</p>
+@Resources.Global.HomeIndex2Objectives
+<ul>
+    <li>@Resources.Global.HomeIndex2Objective1</li>
+    <li>@Resources.Global.HomeIndex2Objective2</li>
+    <li>@Resources.Global.HomeIndex2Objective3</li>
+</ul>
+<p>@Resources.Global.HomeIndex2WTD</p>
+<div style="text-align: center; width: 40%; margin-left: auto; margin-right: auto;">
+    <table class="ASTList">
+        <tr>
+            <td class="ASTList">
+                <a id="un" title="@Resources.Global.HomeJSATitle1" class="button" href='@Url.Content("~/JSA/Index?lang=" + @Resources.Global.GlobalCurrentLang)'>
+                    @Resources.Global.HomeIndex2NewAST</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="ASTList">
+                <a id="deux" title="@Resources.Global.HomeJSATitle2" class="button" href='@Url.Content("~/JSA/Search?lang=" + @Resources.Global.GlobalCurrentLang)'>
+                    @Resources.Global.HomeIndex2SearchAST</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="ASTList">
+                <a id="trois" title="@Resources.Global.HomeJSATitle3" class="button" href='@Url.Content("~/JSA/Tutorial?lang=" + @Resources.Global.GlobalCurrentLang)'>
+                    @Resources.Global.HomeIndex2Tuto</a>
+            </td>
+        </tr>
+        @{
+            if (@Html.Action("isAdmin").ToString().Equals("true"))
+            {
+            <tr>
+                <td class="ASTList">
+                    <a id="quatre" title="@Resources.Global.HomeJSATitle4" class="button" href='@Url.Content("~/JSA/Admin?lang=" + @Resources.Global.GlobalCurrentLang)'>
+                        @Resources.Global.HomeIndex2Admin</a>
+                </td>
+            </tr>            
+            };
+        }
+    </table>
+</div>

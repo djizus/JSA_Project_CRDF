@@ -1,0 +1,6 @@
+﻿@model Safe_Task_Analysis.Models.PreventiveMesure
+      
+@Model.PreventiveMesure_Attr.Last().Description
+<img alt="@Resources.Global.GlobalEdit" src="@Url.Content("~/images/edit-icon.png")" onclick="return EditPrevMes(@Model.IDPreVMeSure)" width="16" height="16" class="TasksButtons" />
+<img alt="@Resources.Global.GlobalDelete" src="@Url.Content("~/images/Actions-edit-delete-icon.png")" onclick="return DeletePrevMes(@Model.IDPreVMeSure)" width="16" height="16" class="TasksButtons" />
+@Html.Hidden("hidden_prevmes_" + Model.IDPreVMeSure.ToString(), Model.PreventiveMesure_Attr.Last().Description, new { id = "hidden_prevmes_" + Model.IDPreVMeSure.ToString() })

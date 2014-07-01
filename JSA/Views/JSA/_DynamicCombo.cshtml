@@ -1,0 +1,28 @@
+﻿@model List<SelectListItem>
+           
+@{
+    // create a dropdownmenu
+    switch ((int)ViewBag.OnchangeCount) { 
+        case 0 :
+            if (ViewBag.Disabled == "false")
+            {
+                @Html.DropDownList((string)(ViewBag.CboName), Model, new { id = ViewBag.CboName })
+            }
+            else
+            {
+                @Html.DropDownList((string)(ViewBag.CboName), Model, new { id = ViewBag.CboName, disabled = "disabled" })
+            }
+            break;
+
+        case 1:
+            if (ViewBag.Disabled == "false")
+            {
+                @Html.DropDownList((string)(ViewBag.CboName), Model, new { id = ViewBag.CboName, onchange = "UpdateContent(this, '" + ViewBag.DivName + "', '" + ViewBag.FuncName + "', '" + ViewBag.VarName + "')" })
+            }
+            else
+            {
+                @Html.DropDownList((string)(ViewBag.CboName), Model, new { id = ViewBag.CboName, onchange = "UpdateContent(this, '" + ViewBag.DivName + "', '" + ViewBag.FuncName + "', '" + ViewBag.VarName + "')", disabled = "disabled" })
+            }
+            break;
+    }
+    }

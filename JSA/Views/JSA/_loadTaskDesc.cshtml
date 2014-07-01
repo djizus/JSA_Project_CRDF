@@ -1,0 +1,76 @@
+﻿@model Safe_Task_Analysis.Models.Task
+<tr>
+@{
+    IEnumerable<Safe_Task_Analysis.Models.AssociatedRisk> risks = Model.AssociatedRisk;
+    int c = 0;
+    foreach (Safe_Task_Analysis.Models.AssociatedRisk r in risks)
+    {
+        c += r.PreventiveMesure.Count();
+    }
+    int majrow = risks.Count() + c;
+    if (majrow == 0)
+    {
+        majrow = 1;
+    }
+    else{
+        majrow = majrow * 2 + 1;
+    }
+    //column # + taskname
+    }    
+
+    <td id="num_@(Model.IdtAsk.ToString())" rowspan="@(majrow)" valign="top">
+            <div id="td_no_text_@(Model.IdtAsk.ToString())">
+                &nbsp;&nbsp;@Model.Task_Attr.Last().OrderNo.ToString()</div>
+            <div style="width: 30px; display:inline-block; vertical-align:top; float:left" id="td_no_@(Model.IdtAsk.ToString())">
+                <img id="MoveUp@(Model.Task_Attr.Last().OrderNo.ToString())" class="@(Model.Task_Attr.Last().OrderNo > 1 ? "MoveUpDown" : "MoveUpFirst")" alt="@Resources.Global.GlobalMoveUp" src="@Url.Content("~/images/Actions-go-up-icon.png")" onclick="return Move('Up', 'td_no_@(Model.IdtAsk.ToString())', @Model.IdtAsk, @Model.Task_Attr.Last().OrderNo)" width="16" height="16" />
+                <img id="MoveDown@(Model.Task_Attr.Last().OrderNo.ToString())" class="@((Model.JSA.Task.Where(tk => tk.Task_Attr.Last().Active == true).Count()) == (Model.Task_Attr.Last().OrderNo) ? "MoveDownLast" : "MoveUpDown")" alt="@Resources.Global.GlobalMoveDown" src="@Url.Content("~/images/Actions-go-down-icon.png")" onclick="return Move('Down', 'td_no_@(Model.IdtAsk.ToString())', @Model.IdtAsk, @Model.Task_Attr.Last().OrderNo)" width="16" height="16" />
+                @Html.Hidden("hidden_UpDown_" + Model.Task_Attr.Last().OrderNo.ToString(), Model.IdtAsk.ToString(), new { id = "hidden_UpDown_" + Model.Task_Attr.Last().OrderNo.ToString() })
+                @Html.Hidden("hidden_UpDownB_" + Model.IdtAsk.ToString(), Model.Task_Attr.Last().OrderNo.ToString(), new { id = "hidden_UpDownB_" + Model.IdtAsk.ToString() })
+            </div>
+        </td>
+        <td id="name_@(Model.IdtAsk.ToString())" rowspan="@(majrow)" valign="top">
+            <div id="td_desc_@(Model.IdtAsk.ToString())" style="display:inline-block; float:left">
+                <div id="div_desc_@(Model.IdtAsk.ToString())">
+                    <div id="div_desc_text_@(Model.IdtAsk.ToString())">
+                        @Model.Task_Attr.Last().Description
+                        <div class="TasksButtonsBlock" style="float: inherit; vertical-align: top">
+                            <img alt="@Resources.Global.GlobalEdit" src="@Url.Content("~/images/edit-icon.png")" onclick="return EditTask(@Model.IdtAsk)" width="16" height="16" class="TasksButtons" />
+                            <img alt="@Resources.Global.GlobalDelete" src="@Url.Content("~/images/Actions-edit-delete-icon.png")" onclick="return DeleteTask(@Model.IdtAsk)" width="16" height="16" class="TasksButtons" />
+                        </div>
+                    </div>
+                    @Html.Hidden("hidden_desc_" + Model.IdtAsk.ToString(), Model.Task_Attr.Last().Description, new { id = "hidden_desc_" + Model.IdtAsk.ToString() })
+                </div>
+            </div>      
+        </td>   
+    @{
+        //column risques 
+        foreach (Safe_Task_Analysis.Models.AssociatedRisk r in risks)
+        {
+            int j = r.PreventiveMesure.Count();
+            int rows = j * 2;
+            if (rows > 0)
+                {
+                rows = rows +1;
+                @Html.Raw("<td id=" + r.IdaSsRisk + "  rowspan=" + rows + " valign='top'>")
+                }
+            else
+                {
+                @: <td>
+                }
+            Html.RenderAction("loadJSARisk", new
+            {
+                RiskID = r.IdaSsRisk,
+                lang = @Resources.Global.GlobalCurrentLang
+            }); 
+            @: </td>
+            @: <tr>
+            @: </tr>
+            }
+        }
+        <td class="TasksButtonsBlock">
+        <span>
+        <a href="#" onclick="return AddRisk(@Model.IdtAsk)">@Resources.Global.JSAIndexAddAssRisk</a>
+        <br />
+        </span>
+        </td>
+</tr>

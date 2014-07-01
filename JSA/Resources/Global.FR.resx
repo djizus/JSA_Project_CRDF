@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ByJSA" xml:space="preserve">
+    <value>Par</value>
+  </data>
+  <data name="GlobalAAFCOnline" xml:space="preserve">
+    <value>AAC en direct</value>
+  </data>
+  <data name="GlobalAAFCOnlineURL" xml:space="preserve">
+    <value>http://www.agr.gc.ca/index_f.php</value>
+  </data>
+  <data name="GlobalAdd" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="GlobalAll" xml:space="preserve">
+    <value>Toutes</value>
+  </data>
+  <data name="GlobalAuthor" xml:space="preserve">
+    <value>Rédacteur</value>
+  </data>
+  <data name="GlobalCancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="GlobalContact" xml:space="preserve">
+    <value>Contactez-nous</value>
+  </data>
+  <data name="GlobalCurrentLang" xml:space="preserve">
+    <value>fra</value>
+  </data>
+  <data name="GlobalDelete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="GlobalEdit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="GlobalExportPDF" xml:space="preserve">
+    <value>Enregistrer en PDF</value>
+  </data>
+  <data name="GlobalFinish" xml:space="preserve">
+    <value>Terminer</value>
+  </data>
+  <data name="GlobalHelp" xml:space="preserve">
+    <value>Aide</value>
+  </data>
+  <data name="GlobalHome" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="GlobalImportantNotice" xml:space="preserve">
+    <value>Avis importants</value>
+  </data>
+  <data name="GlobalModDate" xml:space="preserve">
+    <value>Dernière modification</value>
+  </data>
+  <data name="GlobalModificationDate" xml:space="preserve">
+    <value>Date de modification</value>
+  </data>
+  <data name="GlobalMoveDown" xml:space="preserve">
+    <value>Descendre</value>
+  </data>
+  <data name="GlobalMoveUp" xml:space="preserve">
+    <value>Monter</value>
+  </data>
+  <data name="GlobalNone" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="GlobalPageTop" xml:space="preserve">
+    <value>Haut de la page</value>
+  </data>
+  <data name="GlobalPrint" xml:space="preserve">
+    <value>Imprimer</value>
+  </data>
+  <data name="GlobalPubliservice" xml:space="preserve">
+    <value>Publiservice</value>
+  </data>
+  <data name="GlobalReturn" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="GlobalSafeTaskAnalysisTitle" xml:space="preserve">
+    <value>Analyse Sécuritaire de Tâches</value>
+  </data>
+  <data name="GlobalSave" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="GlobalSigName" xml:space="preserve">
+    <value>sig-fra.gif</value>
+  </data>
+  <data name="GlobalSwitchLang" xml:space="preserve">
+    <value>eng</value>
+  </data>
+  <data name="GlobalSwitchLanguage" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="GlobalUpdate" xml:space="preserve">
+    <value>Mettre a jour</value>
+  </data>
+  <data name="GlobalWebAddr" xml:space="preserve">
+    <value>qcsthyaweb3.agr.gc.ca/JSA</value>
+  </data>
+  <data name="HomeIndex2Body" xml:space="preserve">
+    <value>Corp de la page Index 2 en Français</value>
+  </data>
+  <data name="HomeIndex2Desc1" xml:space="preserve">
+    <value>Le processus d’analyse de la sécurité des tâches (AST) constitue un moyen de cerner les risques liés à un emploi et de déterminer les mesures préventives à mettre en œuvre pour les contrôler.</value>
+  </data>
+  <data name="HomeIndex2Desc2" xml:space="preserve">
+    <value>Le processus comprend l’analyse approfondie de chaque tâche requise par l’emploi, la description des risques potentiels associés à chaque tâche et le choix de moyens efficaces pour prévenir ou réduire le niveau des risques.</value>
+  </data>
+  <data name="HomeIndex2NewAST" xml:space="preserve">
+    <value>Créer une nouvelle AST</value>
+  </data>
+  <data name="HomeIndex2Tuto" xml:space="preserve">
+    <value>Consulter la formation de base sur les AST</value>
+  </data>
+  <data name="HomeIndex2WTD" xml:space="preserve">
+    <value>Choisissez parmi l’une des options suivantes :</value>
+  </data>
+  <data name="HomeIndexBody1" xml:space="preserve">
+    <value>Analyse Sécuritaire de Tâches (AST)</value>
+  </data>
+  <data name="HomeIndexBody2" xml:space="preserve">
+    <value>Analyse sécuritaire de tâches</value>
+  </data>
+  <data name="HomeIndexTitle" xml:space="preserve">
+    <value>Analyse Sécuritaire de Tâches / Job Safety Analysis</value>
+  </data>
+  <data name="IdJSA" xml:space="preserve">
+    <value>Par numéro de rapport</value>
+  </data>
+  <data name="JSAexportPdfNoneRequired" xml:space="preserve">
+    <value>Aucun équipement requis</value>
+  </data>
+  <data name="JSAIndexAddAssRisk" xml:space="preserve">
+    <value>Ajouter un risque associé</value>
+  </data>
+  <data name="JSAIndexAddPrevMes" xml:space="preserve">
+    <value>Ajouter une mesure préventive</value>
+  </data>
+  <data name="JSAIndexAddRisk" xml:space="preserve">
+    <value>Etape 4/7 : Ajouter un risque potentiel</value>
+  </data>
+  <data name="JSAIndexAddTask" xml:space="preserve">
+    <value>Etape 3/7 : Ajouter une étape</value>
+  </data>
+  <data name="JSAIndexChooseEnvironment" xml:space="preserve">
+    <value>Veuillez choisir un environnement</value>
+  </data>
+  <data name="JSAIndexChoosePotentialRisk" xml:space="preserve">
+    <value>Veuillex choisir un risque potentiel</value>
+  </data>
+  <data name="JSAIndexChooseRegion" xml:space="preserve">
+    <value>Veuillez choisir une région</value>
+  </data>
+  <data name="JSAIndexChooseRiskCat" xml:space="preserve">
+    <value>Veuillex choisir une catégorie de risques</value>
+  </data>
+  <data name="JSAIndexChooseSafetyEquip" xml:space="preserve">
+    <value>Choisissez les équipements applicables :</value>
+  </data>
+  <data name="JSAIndexChooseOrganisation" xml:space="preserve">
+    <value>Veuillez choisir une organisation</value>
+  </data>
+  <data name="JSAIndexChooseTaskName" xml:space="preserve">
+    <value>Veuillez entrer un nom pour cette tâche</value>
+  </data>
+  <data name="JSAIndexChooseSupervisor" xml:space="preserve">
+    <value>Veuillez choisir un superviseur</value>
+  </data>
+  <data name="JSAIndexEnterPrevMes" xml:space="preserve">
+    <value>Etape 5/7 : Ajoutez une mesure préventive</value>
+  </data>
+  <data name="JSAIndexEnterTaskDesc" xml:space="preserve">
+    <value>Ajoutez une description pour cette étape</value>
+  </data>
+  <data name="JSAIndexEnvironment" xml:space="preserve">
+    <value>Environnement</value>
+  </data>
+  <data name="JSAIndexModifyJSA" xml:space="preserve">
+    <value>AST</value>
+  </data>
+  <data name="JSAIndexNewJSA" xml:space="preserve">
+    <value>Nouvelle AST</value>
+  </data>
+  <data name="JSAIndexNewJSAe" xml:space="preserve">
+    <value>Nouvelle analyse sécuritaire de tâches</value>
+  </data>
+  <data name="JSAIndexPotentialRisk" xml:space="preserve">
+    <value>Risques Potentiels</value>
+  </data>
+  <data name="JSAIndexPreventiveMesures" xml:space="preserve">
+    <value>Mesures préventives</value>
+  </data>
+  <data name="JSAIndexRegion" xml:space="preserve">
+    <value>Région</value>
+  </data>
+  <data name="JSAIndexSafeTyEquip" xml:space="preserve">
+    <value>Équipement de protection individuelle</value>
+  </data>
+  <data name="JSAIndexOrganisation" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="JSAIndexSureDelete1" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir effacer</value>
+  </data>
+  <data name="JSAIndexSureDelete2" xml:space="preserve">
+    <value>ainsi que tous ses riques associés et mesures préventive ? La suppression est irréversible.</value>
+  </data>
+  <data name="JSAIndexSureDelete3" xml:space="preserve">
+    <value>ainsi que les mesures préventives qui lui sont associées ? La suppression est irréversible.</value>
+  </data>
+  <data name="JSAIndexSureDelete4" xml:space="preserve">
+    <value>? La suppression est irréversible.</value>
+  </data>
+  <data name="JSAIndexTaskOrder" xml:space="preserve">
+    <value>Ordre des tâches</value>
+  </data>
+  <data name="JSAIndexTaskToAnalize" xml:space="preserve">
+    <value>Emploi à analyser</value>
+  </data>
+  <data name="JSAIndexSupervisor" xml:space="preserve">
+    <value>Superviseur</value>
+  </data>
+  <data name="JSAIndexTitle" xml:space="preserve">
+    <value>Analyse sécuritaire de tâches</value>
+  </data>
+  <data name="JSANewTitle" xml:space="preserve">
+    <value>Nouvelle analyse sécuritaire de tâches</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Recherche</value>
+  </data>
+  <data name="SearchJSA" xml:space="preserve">
+    <value>Chercher une AST existante</value>
+  </data>
+  <data name="TutorialJSA" xml:space="preserve">
+    <value>Tutoriel</value>
+  </data>
+  <data name="AddTaskDesc" xml:space="preserve">
+    <value>Ajouter une nouvelle étape</value>
+  </data>
+  <data name="JSAIndexEnterRisk" xml:space="preserve">
+    <value>Ajoutez un risque</value>
+  </data>
+  <data name="HomeIndex2Admin" xml:space="preserve">
+    <value>Administrer l’application</value>
+  </data>
+  <data name="JSAIndexAdmin" xml:space="preserve">
+    <value>Administrateur</value>
+  </data>
+  <data name="JSAIndexGestion" xml:space="preserve">
+    <value>Gestion des</value>
+  </data>
+  <data name="JSALister" xml:space="preserve">
+    <value>Liste des </value>
+  </data>
+  <data name="JSACreateNew" xml:space="preserve">
+    <value>Créér un</value>
+  </data>
+  <data name="JSANewAdmin" xml:space="preserve">
+    <value>Entrez le login Windows</value>
+  </data>
+  <data name="JSAIndexBranch" xml:space="preserve">
+    <value>Direction Gén.</value>
+  </data>
+  <data name="JSAIndexChooseBranch" xml:space="preserve">
+    <value>Veuillez choisir une direction générale</value>
+  </data>
+  <data name="GlobalModify" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="GlobalCreateDate" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="GlobalModAuthor" xml:space="preserve">
+    <value>Dernière révision</value>
+  </data>
+  <data name="GlobalSort" xml:space="preserve">
+    <value>Trier par</value>
+  </data>
+  <data name="JSACreateSupervisorInstructions" xml:space="preserve">
+    <value>Entrez un superviseur suivant le format suivant : Nom, Prénom</value>
+  </data>
+  <data name="JSATipTask1" xml:space="preserve">
+    <value>Respecter l’ordre chronologique d’exécution des tâches</value>
+  </data>
+  <data name="JSATipHeader" xml:space="preserve">
+    <value>Le but de la collecte d’information est de compiler et d’archiver les AST et d’en assurer le suivi périodique, et ce, à l’intention des superviseurs, des gestionnaires, du comité local de santé et de sécurité (ou du représentant STT), des coordonnateurs régionaux en SST ou du comité national d’orientation.
+
+Pour créer des rapports exacts et trier l’information, il faut d’abord préciser les champs suivants :</value>
+  </data>
+  <data name="JSATipPrevMes" xml:space="preserve">
+    <value>Trouver des façons d’éliminer ou de réduire les risques identifiés en suivant les stratégies de contrôle des risques classées par ordre de préférence :</value>
+  </data>
+  <data name="JSATipPrevMes1" xml:space="preserve">
+    <value>L’élimination du risque;</value>
+  </data>
+  <data name="JSATipPrevMes2" xml:space="preserve">
+    <value>La réduction du risque, notamment par son isolation;</value>
+  </data>
+  <data name="JSATipPrevMes3" xml:space="preserve">
+    <value>La fourniture de matériel, d’équipement, de dispositifs ou de vêtements de protection personnels;</value>
+  </data>
+  <data name="JSATipPrevMes4" xml:space="preserve">
+    <value>L’établissement de procédures administratives.</value>
+  </data>
+  <data name="JSATipRisk" xml:space="preserve">
+    <value>Déterminer les risques associés à l’étape de votre tâche.   
+
+Pour vous aider, référez-vous à l'aide-mémoire qui regroupe les risques par catégorie en citant les exemples les plus communs. Conseils :</value>
+  </data>
+  <data name="JSATipRisk1" xml:space="preserve">
+    <value>Associer autant de risques décelés par étape que vous pouvez en trouver</value>
+  </data>
+  <data name="JSATipRisk2" xml:space="preserve">
+    <value>Utiliser des termes courts, clairs et concis précisant la nature du risque</value>
+  </data>
+  <data name="JSATipRisk3" xml:space="preserve">
+    <value>Éviter de choisir des risques trop généraux (ex: dangereux pour la santé, risque de mourir) ou trop spécifiques (ex: peut entraîner des brûlures au troisième degré)</value>
+  </data>
+  <data name="JSATipTask" xml:space="preserve">
+    <value>En règle générale, la plupart des emplois peuvent être divisés en moins de dix tâches.  Autrement, il est conseillé de fragmenter l’emploi, chacun des segments faisant l’objet d’une AST distincte. Conseils :</value>
+  </data>
+  <data name="JSATipTask2" xml:space="preserve">
+    <value>Noter ce qui doit être fait plutôt que la manière de le faire</value>
+  </data>
+  <data name="JSATipTask3" xml:space="preserve">
+    <value>Débuter avec des verbes d’action, courts, précis, concis</value>
+  </data>
+  <data name="JSATipTask4" xml:space="preserve">
+    <value>Éviter de présenter les énoncés dans sa forme négative du type « Ne pas…»</value>
+  </data>
+  <data name="JSATipTaskName" xml:space="preserve">
+    <value>Idéalement tous les emplois devraient faire l’objet d’une AST.  Il existe cependant des contraintes pratiques en temps et en ressources. C’est pourquoi il faut habituellement établir des priorités.  
+
+Votre gestionnaire ou superviseur a probablement déjà ciblé une raison précise faisant en sorte que vous vous apprêtez à rédiger une AST.  Les facteurs à considérer pourraient inclure :</value>
+  </data>
+  <data name="JSAGlobalStats" xml:space="preserve">
+    <value>Statistiques de l'application</value>
+  </data>
+  <data name="JSAAssociated" xml:space="preserve">
+    <value>Associé(e)</value>
+  </data>
+  <data name="JSACreateNewe" xml:space="preserve">
+    <value>Créér une</value>
+  </data>
+  <data name="JSAIndexAdmins" xml:space="preserve">
+    <value>Administrateurs</value>
+  </data>
+  <data name="JSAIndexBranchs" xml:space="preserve">
+    <value>Directions générales</value>
+  </data>
+  <data name="JSAIndexEnvironments" xml:space="preserve">
+    <value>Environnements</value>
+  </data>
+  <data name="JSAIndexOrganisations" xml:space="preserve">
+    <value>Organisations</value>
+  </data>
+  <data name="JSAIndexRegions" xml:space="preserve">
+    <value>Régions</value>
+  </data>
+  <data name="JSAIndexSupervisors" xml:space="preserve">
+    <value>Superviseurs</value>
+  </data>
+  <data name="JSADocumentAssociated" xml:space="preserve">
+    <value>Document associé</value>
+  </data>
+  <data name="HomeIndex2SearchAST" xml:space="preserve">
+    <value>Chercher une AST existante</value>
+  </data>
+  <data name="HomeIndex2Desc3" xml:space="preserve">
+    <value>Ces mesures préventives peuvent dès lors être intégrées aux pratiques et aux méthodes de travail concernant cet emploi.</value>
+  </data>
+  <data name="HomeIndex2Objective1" xml:space="preserve">
+    <value>Rappeler les points saillants de la formation sur les AST</value>
+  </data>
+  <data name="HomeIndex2Objective2" xml:space="preserve">
+    <value>Expliquer les étapes d’enregistrement d’une AST avec l’aide de l’outil d’archivage et de rédaction offert</value>
+  </data>
+  <data name="HomeIndex2Objective3" xml:space="preserve">
+    <value>Favoriser l’échange d’information sur les AST du Ministère</value>
+  </data>
+  <data name="HomeIndex2Objectives" xml:space="preserve">
+    <value>Objectifs de la base de données :</value>
+  </data>
+  <data name="HomeJSATitle1" xml:space="preserve">
+    <value>Utiliser un gabarit standard de rédaction intégrant l’information à la banque de données du Ministère</value>
+  </data>
+  <data name="HomeJSATitle2" xml:space="preserve">
+    <value>Visualiser les AST disponibles et les adapter aux situations personnelles</value>
+  </data>
+  <data name="HomeJSATitle3" xml:space="preserve">
+    <value>Un tutoriel expliquant le processus de rédaction d’une AST étape par étape (recommandé à la première occurrence)</value>
+  </data>
+  <data name="HomeJSATitle4" xml:space="preserve">
+    <value>Permettre la modification des menus, la compilation, l’archivage et le suivi</value>
+  </data>
+  <data name="GlobalCopy" xml:space="preserve">
+    <value>Copier vers un nouveau rapport</value>
+  </data>
+  <data name="Tuto1" xml:space="preserve">
+    <value>Visionner le diaporama PowerPoint</value>
+  </data>
+  <data name="Tuto2" xml:space="preserve">
+    <value>Voir un exemple de rapport complet</value>
+  </data>
+  <data name="GlobalError1" xml:space="preserve">
+    <value>Remplissez le champ !</value>
+  </data>
+  <data name="GlobalError2" xml:space="preserve">
+    <value>Echec !</value>
+  </data>
+  <data name="GlobalSuccess" xml:space="preserve">
+    <value>Succès !</value>
+  </data>
+  <data name="GeneralInformations" xml:space="preserve">
+    <value>Informations générales :</value>
+  </data>
+  <data name="GlobalUpload" xml:space="preserve">
+    <value>Joindre le fichier</value>
+  </data>
+  <data name="JSAHeader1" xml:space="preserve">
+    <value>Etape 1/7 : Choix du travail à analyser</value>
+  </data>
+  <data name="JSAHeader2" xml:space="preserve">
+    <value>Etape 2/7 : Remplir les informations globales de l'AST</value>
+  </data>
+  <data name="JSAIndexChooseAdmin" xml:space="preserve">
+    <value>Choisissez un administrateur</value>
+  </data>
+  <data name="JSADB" xml:space="preserve">
+    <value>AST dans la base de données !</value>
+  </data>
+  <data name="JSAIndexChooseAuthor" xml:space="preserve">
+    <value>Veuillez choisir un auteur</value>
+  </data>
+  <data name="JSASearch" xml:space="preserve">
+    <value>AST pour votre recherche :</value>
+  </data>
+  <data name="JSAStep6" xml:space="preserve">
+    <value>Etape 6/7 : Transmission aux employés concernés</value>
+  </data>
+  <data name="JSAStep6a" xml:space="preserve">
+    <value>Transmettre les AST aux employés devant exécuter la tâche</value>
+  </data>
+  <data name="JSAStep6b" xml:space="preserve">
+    <value>Ajouter au besoin l’AST au protocole ou à la procédure existante</value>
+  </data>
+  <data name="JSAStep6c" xml:space="preserve">
+    <value>Assurer la formation d’un nouvel employé avec l’aide des AST</value>
+  </data>
+  <data name="JSAStep7" xml:space="preserve">
+    <value>Etape 7/7 : Révision périodique</value>
+  </data>
+  <data name="JSAStep7a" xml:space="preserve">
+    <value>Réviser l’AST lorsqu’un changement à la tâche est remarqué</value>
+  </data>
+  <data name="JSAStep7b" xml:space="preserve">
+    <value>Réviser l’AST lorsqu’un nouveau risque est décelé</value>
+  </data>
+  <data name="JSAStep7c" xml:space="preserve">
+    <value>Votre comité local de santé et de sécurité (ou représentant en SST) déterminera le processus de révision applicable à votre AST</value>
+  </data>
+  <data name="JSAThere" xml:space="preserve">
+    <value>Il y a </value>
+  </data>
+  <data name="JSAMailTo" xml:space="preserve">
+    <value>Envoyez cet AST par courriel</value>
+  </data>
+  <data name="JSAGoingToStep67" xml:space="preserve">
+    <value>Les prochaines étapes concernent directement la rédaction de votre AST.
+Gardez en tête que vous pourrez enrichir  l’AST rédigée des options facultatives suivantes :</value>
+  </data>
+  <data name="JSAGoingToStep671" xml:space="preserve">
+    <value>Ajouter les pictogrammes d’équipement de protection individuelle</value>
+  </data>
+  <data name="JSAGoingToStep672" xml:space="preserve">
+    <value>Ajouter des informations générales dans l’introduction de votre document</value>
+  </data>
+  <data name="JSAGoingToStep673" xml:space="preserve">
+    <value>Joindre des documents complémentaires à l’AST</value>
+  </data>
+  <data name="AideMemoire" xml:space="preserve">
+    <value>Aide-memoire</value>
+  </data>
+  <data name="JSACopyInfos" xml:space="preserve">
+    <value>Prenez le temps de vérifier que les informations copiées dans le tableau sont correctes. Ensuite, corrigez le header et ajoutez un nom de tâche pour cette AST.</value>
+  </data>
+  <data name="UnspecifiedSup" xml:space="preserve">
+    <value>Superviseur non-spécifié</value>
+  </data>
+</root>

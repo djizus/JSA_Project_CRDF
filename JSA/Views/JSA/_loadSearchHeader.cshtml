@@ -1,0 +1,132 @@
+﻿@model Safe_Task_Analysis.Models.JSA
+<style type="text/css">
+    select
+    {
+        width: 25em;
+    }
+</style>
+
+<script type="text/javascript">
+    $.fn.loadWithoutCache = function () {
+        
+        {
+            var elem = $(this);
+            var args = arguments[1];
+            var func = arguments[2];
+            if (args == undefined)
+                args = {};
+
+            $.ajax({
+                url: arguments[0],
+                cache: false,
+                data: args,
+                dataType: "html",
+                success: function (data, textStatus, XMLHttpRequest) {
+                    elem.html(data);
+                    if (func != undefined) {
+                        func(data, textStatus, XMLHttpRequest);
+                    }
+                }
+            });
+            return elem;
+        }
+    }
+
+    function updateJSA_ID() {
+        var id = document.getElementById("JSA_ID").value;
+        if (id != "") {
+            var s = '@Url.Content("~/JSA/Index?JSA_ID=")' + id + "&lang=" + '@Resources.Global.GlobalCurrentLang';
+            location.href = s;
+        }
+        else
+            alert("Fill in the blank !");
+    }
+</script>
+
+<table>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA # : </b>
+        </td>
+        <td>
+            <input type="text" id="JSA_ID" />
+            <input onclick="updateJSA_ID()" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA @Resources.Global.JSAIndexTaskToAnalize :
+            </b>
+        </td>
+        <td>
+            <input id="taskidAjax" type="text" />
+            <input onclick="updateChoice('task')" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA @Resources.Global.GlobalAuthor : </b>
+        </td>
+        <td>
+            @{Html.RenderAction("getAuthors");}
+            <input onclick="updateChoice('author')" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA @Resources.Global.JSAIndexBranch : </b>
+        </td>
+        <td>
+            @{Html.RenderAction("getBranch", new { lang = @Resources.Global.GlobalCurrentLang });}
+            <input onclick="updateChoice('branch')" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA @Resources.Global.JSAIndexEnvironment : </b>
+        </td>
+        <td>
+            @{Html.RenderAction("getWorkEnv", new { lang = @Resources.Global.GlobalCurrentLang });}
+            <input onclick="updateChoice('env')" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA @Resources.Global.JSAIndexRegion : </b>
+        </td>
+        <td>
+            @{Html.RenderAction("getRegions", new { lang = @Resources.Global.GlobalCurrentLang, current = 0 });}
+            <input onclick="updateChoice('region')" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA @Resources.Global.JSAIndexOrganisation :
+            </b>
+        </td>
+        <td>
+            <span id="OrganisationDiv">
+                @{Html.RenderAction("getOrganisationByRegion", new { RegionID = 0, lang = @Resources.Global.GlobalCurrentLang, current = 0, disabled = "true" });}
+            </span>
+            <input onclick="updateChoice('organisation')" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>&nbsp;&nbsp;@Resources.Global.ByJSA @Resources.Global.JSAIndexSupervisor : </b>
+        </td>
+        <td>
+            <span id="SupervisorDiv">
+                @{Html.RenderAction("getSupervisorByOrganisation", new { OrganisationID = 0, lang = @Resources.Global.GlobalCurrentLang, current = 0, disabled = "true" });}
+            </span>
+            <input onclick="updateChoice('supervisor')" type="submit" value="@Resources.Global.Search" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input onclick="updateChoice('all')" type="submit" value="  @Resources.Global.GlobalAll  " />
+        </td>
+    </tr>
+</table>
+<div id="HeaderErr">
+</div>

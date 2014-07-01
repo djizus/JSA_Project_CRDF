@@ -1,0 +1,1 @@
+DbMetal.exe -provider=MySql -database:SafeTaskAnalysis -server:QcStHyaWeb3:3306 -user:ASTProject -password:JSA123Auclaire -namespace:STA_Data -code:STA_Data.cs

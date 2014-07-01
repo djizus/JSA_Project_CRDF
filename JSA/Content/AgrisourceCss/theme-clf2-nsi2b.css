@@ -1,0 +1,683 @@
+@charset "utf-8";
+/* Version 1.2 of the AgriSource style sheets */
+/* Version 1.2 des feuilles de styles d'AgriSource */
+
+body {
+	background: #ffffee url(/res/agrisource/images/background-image.jpg) repeat-y center;
+}
+
+/* Page header styles - START */
+#cn-bcrumb {
+	font-size: .9em;
+	font-family:Verdana, Geneva, sans-serif;
+}
+#cn-bcrumb li {
+	padding-top:3px;
+	padding-bottom:5px;
+}
+#cn-bcrumb span.noVis {
+	display: none;	
+}
+#cn-leaf {
+	background-image: url(/res/clf2.2/images/lffl.gif);
+	background-color: transparent;
+}
+ a:hover,  a:focus,  a:active {
+	background-color: #447700;
+}	
+#cn-banner, #cn-banner-eng, #cn-banner-fra {
+	background-color: #447700;
+	background-image:url(/res/agrisource/images/ags_banner.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	text-shadow: black 0 0 0.3em;
+}
+#cn-banner #cn-banner-text, #cn-banner-eng #cn-banner-text, #cn-banner-fr #cn-banner-text {
+	width: 100%; 
+	margin: 0; 
+	padding: 29px 0 0 0; 
+	color: #FFFFFF; 
+	font-weight: bold; 
+	font-size: 200%; 
+	font-family: Tahoma,serif;
+	font-weight:bold;
+}
+#cn-banner p, #cn-banner-eng p, #cn-banner-fra p {
+	width: 100%; 
+	margin: 0; 
+	padding: 0 0 4px 0; 
+	color: #FFFFFF; 
+	font-size: 110%; 
+	font-family: Arial, Helvetica, sans-serif;
+}
+#cn-pd-ul {
+	border-top: 15px solid #447700;
+	margin-left: 0;
+	padding-left: 40px;
+}
+/* page header styles - END */
+
+/* Left column styles - START */
+
+/* Search styles - START */
+#menuleftsearch {
+	background-color:#e7f1d7;
+	margin-bottom: 10px;
+	padding-bottom:5px;
+}
+
+#menuleftsearch h3 {
+	border-bottom:1px solid #AADD66;
+	margin:0;
+	margin-bottom: 10px;
+	padding-bottom:2px;
+	padding-left:4px;
+	padding-right: 8px;
+	background-color:#e7f1d7;
+	border-top:2px solid #447700;
+	color: #000;
+	font-size: 100%;
+	font-weight: bold;
+	line-height: 140%;
+}
+
+#menuleftsearch h4 {
+	border-bottom:1px solid #AADD66;
+	margin:0;
+	margin-bottom: 10px;
+	padding-top:9px;
+	padding-bottom:2px;
+	padding-left:4px;
+	padding-right: 8px;
+	background-color:#e7f1d7;
+	color: #000;
+	font-size: 100%;
+	font-weight: bold;
+	line-height: 140%;
+}
+
+#searchblock {
+	background-color: #AADD66;
+	font-style: normal;
+	font-size: .9em;
+	padding: 5px 2px 5px 4px;
+	display: block;
+	font-weight: normal;
+	text-decoration: none;
+	color:#000;
+}
+
+/* Search styles - END */
+
+#cn-left-col-gap, #cn-left-col {
+	background-color:#FFFFFF;
+}
+
+#cn-left-col h3 {
+	padding: 4px 4px;
+	background-color: #447700;
+	color: #FFFFFF;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: normal;
+	font-style: normal;
+	font-size: .9em;
+}
+#cn-left-col h3.blockSpacerTop {
+	margin-top:10px;
+}
+ 
+#cn-left-col h3 a {
+	background-color: #447700;
+	color: #FFFFFF !important;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1em;
+}
+
+#cn-left-col #cn-search-box {
+	margin: 5px 0 0 5px;
+}
+
+#cn-left-col #cn-search-box #cn-search {
+	border: 1px solid #669922;
+	margin-right: 5px;
+	width: 65%;
+
+}
+
+#cn-left-col #cn-search-box #cn-search-submit {
+	background-color: #447700;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#cn-left-col a {
+	font-style: normal;
+	display: block;
+	margin-bottom:0px;
+	margin-top:0px;
+	font-weight: normal;
+	text-decoration: none;
+	color:#000;
+	padding-top: 3px;
+	padding-right: 2px;
+	padding-bottom: 4px;
+	padding-left: 5px;
+}
+
+#cn-left-col a:link, #cn-left-col a:visited {
+	text-decoration: none !important;
+	color:#000000;
+}
+
+#cn-left-col a:hover, #cn-left-col a:active {
+	text-decoration: underline !important;
+}
+
+#cn-left-col h3 a:hover, #cn-left-col h3 a:focus, #cn-left-col h3 a:active {
+	background-color:#447700;
+}
+#cn-left-col a:hover, #cn-left-col a:focus, #cn-left-col a:active {
+	background-color:#AADD66;
+}
+#cn-left-col li li a:hover, #cn-left-col li li a:focus, #cn-left-col li li a:active {
+	background-color:#e7f1d7;
+}
+
+#cn-left-col li li a:link, #cn-left-col li li a:visited {
+	text-decoration: none !important;
+}
+
+#cn-left-col li li a:hover, #cn-left-col li li a:active {
+	text-decoration: underline !important;
+}
+
+#cn-left-col ul ul {
+	list-style-type: none;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: -40px;
+}
+#cn-left-col li {
+	font-size: .9em;
+	margin-left: -40px;
+	background-color: #AADD66;
+	border-top:1px solid #88bb44 !important;
+}
+#cn-left-col li:first-child {
+	border-top: none !important;
+}
+#cn-left-col li li {
+	font-size: 1em;
+	background-color: #e7f1d7;
+	border-top: 1px solid #88bb44;
+	padding-top: 3px;
+	padding-right: 2px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+}
+#cn-left-col li li:first-child {
+	border-top: 1px solid #88bb44 !important;
+}
+#cn-left-col li li a {
+	list-style-type: none;
+	font-style: normal;
+	display: block;
+	margin-bottom:0px;
+	margin-left:-5px;
+	margin-top:0px;
+	font-style: normal;
+	color:#000;
+	text-decoration: none;
+}
+#cn-left-col li li li {
+	margin-left: -5px; 
+	font-style: italic !important;
+	padding: 0; 
+	padding: 2px 2px 1px 10px; 
+	border-top: 1px dashed #88bb44; 
+}
+#cn-left-col li li li:first-child {
+	border-top: 1px dashed #88bb44;
+}
+#cn-left-col li li li a {
+	margin-left: -5px;
+	font-style: italic !important;
+	text-decoration: none;
+}
+#cn-left-col li li li li {
+	margin-left: -10px;
+	margin-top: -1px;
+	font-style: normal !important;
+	font-size: 0.9em;
+	padding: 2px 2px 2px 8px;
+	border-top: none;
+	line-height: .9em;
+}
+#cn-left-col li li li li:first-child {
+	border-top:  none;
+}
+#cn-left-col li li li li a {
+	margin-left: -5px;
+	font-style: normal !important;
+	text-decoration: none;
+}
+/* Left column styles - END */
+
+/* Right column styles - START */
+#cn-right-col h3 {
+	background-color:#e7f1d7;
+	color:#000000;
+	margin-bottom:0;
+	margin-top:0;
+	padding:4px;
+	border-bottom: #aadd66 solid 1px;
+	border-top: #447700 solid 2px;
+}
+#cn-right-col ul ul {
+	list-style-type: none;
+	margin-left: -20px;
+}
+#cn-right-col ul ul li {
+	background-image: url(/res/agrisource/images/bull_agrsrc.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin-left: -20px;
+	padding-left:15px;
+	margin-top: 0px;
+}
+#cn-right-col div.contentBox {
+	background-color: #e7f1d7 !important;
+	margin: 0px;
+	margin-bottom:10px;
+	padding:0px;
+	padding:4px;
+	padding-left:8px;
+	border:0px;
+}
+#cn-right-col div.contentBox p {
+	border:0px !important;
+	padding:0px !important;
+	margin:0px !important;
+}
+#cn-right-col div.contentBox p form {
+	border:0px !important;
+	padding:0px !important;
+	margin:0px !important;
+}
+#cn-right-col h3 + div.contentBox div.image {
+	text-align:center;
+	border:0px;
+	padding:0px;
+	margin:0px;
+}
+#cn-right-col h3 + div.contentBox div.image img {
+	margin-left:-4px;
+}
+#cn-right-col div.contentBox a {
+	background-color: #e7f1d7 !important;
+	color:#0000FF !important;
+	text-decoration:underline !important;
+}
+#cn-right-col div.contentBox a:visited {
+	color: #990099 !important;
+	text-decoration:underline !important;
+}
+/* Right column styles - END */
+
+/* Content styles - START */
+
+#cn-centre-col textarea, #cn-centre-col input {
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 100%;
+}
+
+#cn-centre-col h1 {
+	border-top:1px solid #447700;
+	border-bottom:1px solid #447700;
+	margin:0;
+	margin-bottom: 10px;
+	padding-bottom:2px;
+	padding-left:4px;
+	padding-right: 4px;
+	background-color:#e7f1d7;
+	color: #000;
+	font-size: 150%;
+	font-weight: bold;
+	line-height: 140%;
+}
+#cn-centre-col h2 {
+	border-bottom: 1px solid #669933;
+	padding-bottom: 0px;
+	margin-bottom: 3px;
+	font-size: 125%;
+}
+#cn-centre-col .contentBox h2 {
+	background-color: #e7f1d7;
+	border-top: 2px solid #447700;
+	border-bottom: 1px solid #669933;
+	padding: 4px;
+	margin-bottom: 0px;
+	font-size: 125%;
+}
+#cn-centre-col h3 {
+	padding-bottom: 0px;
+	margin-bottom: 2px;
+	font-size: 115%;
+}
+#cn-centre-col h4 {
+	padding-bottom: 0px;
+	margin-bottom: 1px;
+	font-size: 110%;
+}
+#cn-centre-col h5 {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	font-size: 105%;
+}
+#cn-centre-col h6 {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	font-size: 100%;
+}
+#cn-centre-col ul {
+	list-style-type: none;
+	margin-left: 0px;
+}
+#cn-centre-col ul li, #cn-centre-col ol ul li {
+	background-image: url(/res/agrisource/images/bull_agrsrc.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	padding-left: 10px;
+	overflow: hidden;
+}
+
+#cn-centre-col ul ul li {
+	background-image: none;
+	list-style-type: circle;
+	overflow: visible;
+}
+#cn-centre-col ol li {
+	/*background-image: none;
+	list-style-type: decimal;
+	overflow: visible;*/
+}
+#cn-centre-col  ul#slideshow0, #cn-centre-col  ul#slideshow1, #cn-centre-col  ul#slideshow2, #cn-centre-col  ul#slideshow3, #cn-centre-col  ul#slideshow4 {
+	list-style-type: none;
+}
+#cn-centre-col  ul#slideshow0 li, #cn-centre-col  ul#slideshow1 li, #cn-centre-col  ul#slideshow2 li, #cn-centre-col  ul#slideshow3 li, #cn-centre-col  ul#slideshow4 li {
+	background-image: none;
+	margin-left: 0px;
+	padding-left:0px;
+	margin-top: 0px;
+}
+#cn-centre-col .contentBox div	{
+	background-color: #e7f1d7;
+	border-bottom: 1px solid #aadd66;
+	padding-left: 4px;
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-right:2px;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+#cn-centre-col .contentBox div p	{
+	margin: 0px;
+}
+#cn-centre-col p.compact	{
+	margin: 0px;
+}
+
+#cn-centre-col textarea, #cn-centre-col input {
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+	font-size: 100%;
+}
+
+/* Slide show styles - START */
+.main-screen { 
+    font-family: Verdana,Arial,Helvetica,sans-serif !important; 
+	background-color: #447700 !important;
+}
+div.desc 	{	
+	padding-left: 8px !important;
+}
+div.desc a 	{
+	margin-left: -6px !important;
+	padding-right: 12px !important;
+}
+/* Slide show styles - END */
+
+/* Slider styles - START */
+ul.slider-nav li {
+      background-image: none !important;
+}
+/* Slider styles - END */
+
+/* A-Z index styles - START */
+#cn-centre-col ul.alphaindex {
+	list-style-type: none;
+	text-align:center; 
+	color: #999999; 
+	width:100%; 
+	margin-left:0px;
+	padding-left:20px;
+	height:16px
+}
+
+#cn-centre-col ul.alphaindex li {
+	background-image: none !important;
+	display: inline;
+	float:left; 
+	border:1px solid #AADD66;
+	margin-right: 19px;
+	width:3px; 
+}
+
+#cn-centre-col ul.alphaindex li a {
+	margin-left:-11px; 
+	text-decoration:none; 
+	display:block; 
+	width:100%;
+}
+#cn-centre-col ul.alphaindex li a:hover {
+	background:#e7f1d7; 
+	color:#000;
+	}
+/* A-Z index styles - END */
+
+ul ul, ul ul ul, ul ul ul ul	{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+ol ul li	{
+	list-style: circle; 
+}
+/* BLUE BOX CALLOUTS (homepage "Top Issues", Tools and Services page, etc.) */
+.agPageCallout {
+	display: inline;
+	float: right;
+	width: 195px;
+	margin: 10px 0px 10px 10px;
+	background-color: #e7f1d7;
+	border-bottom: 1px solid #AADD66;
+	border-top: 2px solid #447700;
+	padding: 5px 10px;
+}
+.agPageCalloutblue {
+	display: inline;
+	float: right;
+	width: 195px;
+	margin: 10px 0px 10px 10px;
+	background-color: #DDEEFF;
+	border-bottom: 1px solid #88AADD;
+	border-top: 2px solid #88AADD;
+	padding: 5px 10px;
+}
+.agright {
+	float: right;
+	width: 215px;
+}
+.agPageCallout ul {
+	list-style-type: none;
+	margin-left: 0px;
+}
+html>body .agPageCallout ul {
+	padding-left: 0px;
+} 
+/*non-IE6*/
+.agPageCallout li {
+	margin-bottom: 15px;
+}
+.agPageCallout h4 {
+	margin-top: 0px;
+}
+/* BLUE BOX CALLOUTS (homepage "Top Issues", Tools and Services page, etc.) */
+
+.content-callout {
+	background-color:#DDEEFF;
+	border:2px solid #88AADD;
+	margin:5px 0px 10px;
+	padding:5px;
+}
+.content-callout h4 {
+	margin-top: 0px;
+}
+
+/* FEATURED NEWS CALLOUT */
+.newsfeature-callout {
+	border: 2px solid #b8b8b8;
+	padding: 5px 10px 5px 10px;
+	margin-bottom: 10px;
+	background-color: #eaeaea;
+}
+.newsfeature-callout h2 {
+	display: inline;
+	font-size: 80%;
+	margin:0px;
+	padding: 0;
+	border-bottom: none;
+}
+.newsfeature-callout h2 a {
+	display: block;
+	text-align: left;
+	font-size: 140%;
+}
+/* Homepage Styles Content area - END */
+/* Content styles - END */
+
+/* Footer styles - START */
+#cn-foot {
+	border-top: 15px solid #447700;
+	height: 5em;
+}
+
+.cn-toppage, #cn-toppage-foot {
+	background-image: url(/res/agrisource/images/tphp.gif);
+	background-repeat: no-repeat;
+	background-position: center top;
+	text-align: center;
+	padding-top: 18px;
+}
+
+/* Footer styles - END */
+
+/* Link icons - START */
+a.cn-external2 {
+	padding-right: 16px;
+}
+.agrisourcelink, .agrisourceLink {
+	padding-right: 16px;
+	background: url("/res/agrisource/images/linkicon_agrisource.gif") no-repeat right top;
+}
+
+a.cn-internal2 {
+	padding-right: 16px;
+}
+/* Link icons - END */
+
+/* utility CSS for spacing blocks | CSS utilitaire pour l'espacement des blocs */
+.blockSpacerTop	{
+	margin-top: 10px !important;
+	}
+.blockSpacerBottom	{
+	margin-bottom: 10px !important;
+	}
+/* Utility CSS for colors */
+.greenDark2BG {
+	background-color: #669922;
+}
+.greenDark1BG {
+	background-color: #447700;
+}
+.greenMed1BG {
+	background-color: #AADD66;
+}
+.greenLight1BG {
+	background-color: #e7f1d7;
+}
+.blueMed1BG {
+	background-color: #88AADD;
+}
+.blueLight1BG {
+	background-color: #DDEEFF;
+}
+.greenDark2 {
+	color: #669922;
+	background-color: transparent;
+}
+.greenDark1 {
+	color: #447700;
+	background-color: transparent;
+}
+.greenMed1 {
+	color: #AADD66;
+	background-color: transparent;
+}
+.greenLight1 {
+	color: #e7f1d7;
+	background-color: transparent;
+}
+.blueMed1 {
+	color: #88AADD;
+	background-color: transparent;
+}
+.blueLight1 {
+	color: #DDEEFF;
+	background-color: transparent;
+}
+
+/*Coda Slider start*/
+.image-left {margin-right:10px;}
+.slider-nav {list-style-type: none;}
+.slider-nav a {display: block;}
+.slider-nav img {display:block; opacity: 100; filter:alpha(opacity=100);}
+/*Coda Slider end*/
+
+/* Hide/Expand -START */
+.toggle-link-expand,.toggle-link-collapse{
+	margin: 0;
+}
+.toggle-content{
+	margin: 0;
+}
+/* Hide/Expand - END */
+
+/*WET Calendar*/
+#cn-centre-col ol.cal-day-list li {list-style-type: none;}
+/*WET Calendar*/
+
+.image-center {
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/*zebra*/
+table.zebra td {
+	padding-left: 2px;
+	padding-right: 1px;
+}
+/*zebra*/

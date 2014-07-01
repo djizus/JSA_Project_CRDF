@@ -1,0 +1,34 @@
+﻿@model Safe_Task_Analysis.Models.JSA
+<table class="table1" id="jsa" border="" cellpadding="2" cellspacing="1" style="overflow: hidden;
+    width: 100%; empty-cells: show; table-layout: fixed">
+    <thead>
+        <tr>
+            <td width="5%" align="center">
+                <b>&nbsp;#</b>
+            </td>
+            <td width="20%" align="center">
+                <b>@Resources.Global.JSAIndexTaskOrder</b>
+            </td>
+            <td width="30%" align="center">
+                <b>@Resources.Global.JSAIndexPotentialRisk</b>
+            </td>
+            <td width="45%" align="center">
+                <b>@Resources.Global.JSAIndexPreventiveMesures</b>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            IEnumerable<Safe_Task_Analysis.Models.Task> tasks = Model.Task.Where(t => t.Task_Attr.Last().Active == true).OrderBy(t => t.Task_Attr.Last().OrderNo);
+            List<Safe_Task_Analysis.Models.Task> tl = tasks.ToList();
+            foreach (Safe_Task_Analysis.Models.Task t in tl)
+            {
+                Html.RenderAction("loadJSATask", new
+                {
+                    TaskID = t.IdtAsk,
+                    lang = @Resources.Global.GlobalCurrentLang
+                });
+            }            
+        }
+    </tbody>
+</table>

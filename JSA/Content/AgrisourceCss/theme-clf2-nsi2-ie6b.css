@@ -1,0 +1,122 @@
+@charset "utf-8";
+/* Version 1.2 of the AgriSource style sheets */
+/* Version 1.2 des feuilles de styles d'AgriSource */
+
+#cn-bcrumb li {
+	padding-bottom:5px !important;
+}
+/*adds space between the leftnav and the breadcrumbs*/
+#cn-left-col-inner h3{
+	margin-top: 2px;
+}
+/*adds space between the h1 title and the breadcrumbs*/
+#cn-centre-col h1 {
+	margin-top: 2px;
+}
+#cn-centre-col ul {
+	margin-left: 40px;
+}
+
+#cn-centre-col ul li {
+	zoom: 1;
+}
+
+#cn-centre-col ul li a{
+	text-align:center;
+}
+
+#cn-centre-col ul ul li {
+	margin-top: 1px;
+	padding: 0;
+	vertical-align: top; 
+	position: relative; 
+	top: -.2em;
+}
+
+#cn-centre-col ol ul li {
+	list-style-type: none;
+}
+
+#cn-centre-col ul ol li {
+	list-style-type:decimal;
+	display: list-item;
+}
+
+#cn-left-col h3.blockSpacerTop {
+	margin-top:10px;
+}
+#cn-left-col ul {
+	margin-left: 0px;
+}
+#cn-left-col ul ul {
+	margin-left: 0px;
+}
+#cn-left-col li {
+	margin-left: 0px;
+}
+#cn-left-col li {
+	margin-top:-1px;
+}
+#cn-left-col li li {
+	margin-top:-1px;
+}
+#cn-left-col li a, #cn-left-col li li a:visited, #cn-left-col li li a:hover, #cn-left-col li li a:focus, #cn-left-col li li a:active {
+	background-color: #AADD66;
+	color: #000000 !important;
+}
+#cn-left-col li li a, #cn-left-col li li a:visited, #cn-left-col li li a:hover, #cn-left-col li li a:focus, #cn-left-col li li a:active {
+	background-color: #EEEEDD;
+	color: #000000;
+	margin-left: -5px;
+}
+
+#searchblock {
+	margin-top: -19px;
+	margin-bottom: -7px;
+}
+div.desc 	{
+	width:95% !important;
+}
+
+/* Right-column styles - START */
+#cn-right-col div {
+	border: 0px;
+}
+#cn-right-col div.contentBox ul {
+	margin-left: 30px;
+}
+#cn-right-col ul ul {
+	margin-left: 30px;
+}
+#cn-right-col ul ul li {
+  	vertical-align : top;
+	margin-left: -20px;
+	padding-left:13px;
+	margin-top: 0px;
+}
+#cn-right-col div.image a	{
+	margin:0px;
+	padding:0px;
+}
+#cn-right-col h3 + div.contentBox li {
+	margin-left: 0px;
+}
+/*border-left and right and margin left remove the flared out footers*/
+#cn-foot {
+	border-top: #447700 solid 0px;
+	border-left: 0px solid #FFF; 
+	border-right: 0px solid #FFF; 
+	margin-left: 0px;
+}
+
+/* Link icons - START */
+.agrisourcelink, .agrisourceLink {
+	zoom: 1;
+}
+/* Link icons - END */
+
+/* Slideshow - START */
+.buttons {
+	margin-top: -2px;
+}
+/* Slideshow - END */

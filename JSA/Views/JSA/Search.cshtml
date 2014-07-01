@@ -1,0 +1,164 @@
+﻿@{ 
+    ViewBag.Title = Resources.Global.JSAIndexTitle;
+    Layout = "~/Views/Shared/_AgriLookLayout.cshtml";
+    ViewBag.CurrentURL = getCurrentURL();
+    ViewBag.ModificationDate = "2012-04-13";
+}
+@using Safe_Task_Analysis.Helpers
+@section BrCrumb{
+    <li><a rel="up" href="@Url.Content("~/Home/Index2?lang=" + @Resources.Global.GlobalCurrentLang)" title="@Resources.Global.GlobalHome">@Resources.Global.GlobalHome</a>&#160;&#62;</li>
+    <li><a rel="up" href="@Url.Content("~/JSA/Search?lang=" + @Resources.Global.GlobalCurrentLang)" title="Search">@Resources.Global.Search</a>&#160;&#62;</li>
+}
+<script type="text/javascript">
+    $.fn.loadWithoutCache = function () {
+        var elem = $(this);
+        var args = arguments[1];
+        var func = arguments[2];
+        if (args == undefined)
+            args = {};
+        $.ajax({
+            url: arguments[0],
+            cache: false,
+            data: args,
+            dataType: "html",
+            success: function (data, textStatus, XMLHttpRequest) {
+                elem.html(data);
+                if (func != undefined) {
+                    func(data, textStatus, XMLHttpRequest);
+                }
+            }
+        });
+        return elem;
+    }
+
+    function updateChoice(displayThis) {
+        var args = null;
+        var errors = 0;
+        var urlajax = null;
+        switch (displayThis) {
+
+            case "task":
+                var task = document.getElementById("taskidAjax").value;
+                if (task == "")
+                    errors = 1;
+                args = { word: task };
+                urlajax = "getTasks";
+                break;
+
+            case "author":
+                var authorAjax = document.getElementById("authorAjax").value;
+                if (authorAjax == "" || authorAjax == 0)
+                    errors = 1;
+                args = { author: authorAjax };
+                urlajax = "getTasksAuthor";
+                break;
+
+            case "branch":
+                var BranchEnv = document.getElementById("BranchEnv").value;
+                if (BranchEnv == 0)
+                    errors = 1;
+                args = { branch: BranchEnv };
+                urlajax = "getTasksBranch";
+                break;
+
+            case "region":
+                var SelectRegion = document.getElementById("SelectRegion").value;
+                if (SelectRegion == 0)
+                    errors = 1;
+                args = { region: SelectRegion };
+                urlajax = "getTasksRegion";
+                break;
+
+            case "organisation":
+                var Organisation = document.getElementById("Organisation").value;
+                if (Organisation == 0)
+                    errors = 1;
+                args = { organisation: Organisation };
+                urlajax = "getTasksOrganisation";
+                break;
+
+            case "env":
+                var WorkEnv = document.getElementById("WorkEnv").value;
+                if (WorkEnv == 0)
+                    errors = 1;
+                args = { env: WorkEnv };
+                urlajax = "getTasksEnv";
+                break;
+
+            case "supervisor":
+                var supervisor = document.getElementById("Supervisor").value;
+                if (supervisor == 0)
+                    errors = 1;
+                args = { namesupervisor: supervisor };
+                urlajax = "getTasksSupervisor";
+                break;
+
+            case "all":
+                args = {};
+                urlajax = "getAllJSAs";
+                break;
+
+            default:
+                errors = 1;
+                s = "Error, undefined choice";
+                break;
+        }
+        if (errors == 0) {
+            var s = '@Url.Content("~/images/ajax-loader.gif")';
+            $("#Recherche").prepend('<img src="' + s + '" alt="loading" />');
+            $.ajax({
+                type: 'GET',
+                data: args,
+                datatype: "json",
+                url: urlajax,
+                success: function (result) {
+                    $("#Recherche").html("");
+                    $("#Recherche").append(result);
+                }
+            });
+        }
+        else
+            alert('Choose something !');
+    }
+
+    function UpdateContent(ref, div_name, page, param_name) {
+        var d = document.getElementById(div_name);
+        if (ref.selectedIndex > 0) {
+            d.innerHTML = "";
+            if (param_name != null)
+                $("#" + div_name).loadWithoutCache(page + "?" + param_name + "=" + ref.value + "&lang=@Resources.Global.GlobalCurrentLang");
+            else
+                $("#" + div_name).loadWithoutCache(page);
+        }
+        else
+            DisableFollowingCbo(ref);
+    }
+</script>
+<h1>@Resources.Global.SearchJSA</h1>
+<p>
+    <b>@Resources.Global.JSAThere  @{Html.RenderAction("countJSA");} @Resources.Global.JSADB</b>
+</p>
+<div id="FullJSA">
+    <div id="JSAHeader" style="border-width: 1px; border-style: solid; border-color: Gray;
+        padding: 3px 3px 3px 3px">
+        @{
+            Html.RenderAction("loadSearchHeader", new { JSA_ID = (Model == null) ? 0 : Model.IDJSA, lang = @Resources.Global.GlobalCurrentLang });
+        }
+    </div>
+    <br />
+    <div id="Recherche">
+        <div style="clear">
+            <div id="TaskDiv" style="text-align: center; display: none;">
+            </div>
+        </div>
+        <br />
+    </div>
+</div>
+<br />
+@functions{
+    string getCurrentURL()
+    {
+        string s = @Url.Content("~/JSA/Search?");
+        return s;
+    }
+}

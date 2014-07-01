@@ -1,0 +1,29 @@
+﻿@model Safe_Task_Analysis.Models.AssociatedRisk
+
+    @(Model.AssociatedRisk_Attr.Last().DescriptionRisk)
+    <img alt="@Resources.Global.GlobalEdit" src="@Url.Content("~/images/edit-icon.png")" onclick="return EditRisk(@Model.IdaSsRisk)" width="16" height="16" class="TasksButtons" />
+    <img alt="@Resources.Global.GlobalDelete" src="@Url.Content("~/images/Actions-edit-delete-icon.png")" onclick="return DeleteRisk(@Model.IdaSsRisk)" width="16" height="16" class="TasksButtons" />
+    @Html.Hidden("hidden_assrisk_" + Model.IdaSsRisk.ToString(), Model.IdaSsRisk.ToString(), new { id = "hidden_assrisk_" + Model.IdaSsRisk.ToString() })
+    @Html.Hidden("hidden_risk_text_" + Model.IdaSsRisk.ToString(), Model.AssociatedRisk_Attr.Last().DescriptionRisk, new { id = "hidden_risk_text_" + Model.IdaSsRisk.ToString() })
+    <br />
+    @{
+        IEnumerable<Safe_Task_Analysis.Models.PreventiveMesure> prev_mesures = Model.PreventiveMesure.Where(pm => pm.PreventiveMesure_Attr.Last().Active == true);
+        foreach (Safe_Task_Analysis.Models.PreventiveMesure pm in prev_mesures)
+        {
+            @: <td id=@pm.IDPreVMeSure> 
+            Html.RenderAction("loadJSAPrevMes", new
+            {
+                PrevMesID = pm.IDPreVMeSure,
+                lang =
+                    @Resources.Global.GlobalCurrentLang
+            });
+            @: </td>
+            @: <tr>
+            @: </tr>
+        }        
+    }
+<td class="TasksButtonsBlock">
+<span>
+<a href="#" onclick="return AddPrevMes(@Model.IdaSsRisk)">@Resources.Global.JSAIndexAddPrevMes</a>
+</span>
+</td>

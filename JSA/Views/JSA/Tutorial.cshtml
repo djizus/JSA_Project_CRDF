@@ -1,0 +1,43 @@
+﻿@model Safe_Task_Analysis.Models.JSA
+@{ 
+    ViewBag.Title = Resources.Global.JSAIndexTitle;
+    Layout = "~/Views/Shared/_AgriLookLayout.cshtml";
+    ViewBag.CurrentURL = getCurrentURL();
+    ViewBag.ModificationDate = "2012-04-13";
+}
+@using Safe_Task_Analysis.Helpers
+@section CssStyle{
+}
+@section metadata{
+}
+@section BrCrumb{
+    <li><a rel="up" href="@Url.Content("~/Home/Index2?lang=" + @Resources.Global.GlobalCurrentLang)" title="@Resources.Global.GlobalHome">@Resources.Global.GlobalHome</a>&#160;&#62;</li>
+    <li><a rel="up" href="@Url.Content("~/JSA/Tutorial?lang=" + @Resources.Global.GlobalCurrentLang)" title="Search">@Resources.Global.TutorialJSA</a>&#160;&#62;</li>
+}
+<h1>@Resources.Global.TutorialJSA</h1>
+<br />
+@{
+    if (Resources.Global.GlobalCurrentLang == "fra")
+    {        
+    <div>
+        <a href="@Url.Content("~/Content/pdfs/JSA_training_F.ppt")">@Resources.Global.Tuto1</a>
+        <br />
+        <a href="@Url.Content("~/JSA/Index?JSA_ID=1&lang=" + @Resources.Global.GlobalCurrentLang)">@Resources.Global.Tuto2</a>
+    </div>
+    }
+    else
+    {
+        <div>
+        <a href="@Url.Content("~/Content/pdfs/JSA_training_F.ppt")">@Resources.Global.Tuto1</a>
+        <br />
+        <a href="@Url.Content("~/JSA/Index?JSA_ID=30&lang=" + @Resources.Global.GlobalCurrentLang)">@Resources.Global.Tuto2</a>
+    </div>
+    }
+}
+@functions{
+    string getCurrentURL()
+    {
+        string s = @Url.Content("~/JSA/Tutorial?");
+        return s;
+    }
+}

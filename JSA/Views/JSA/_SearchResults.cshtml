@@ -1,0 +1,103 @@
+﻿@model List<Safe_Task_Analysis.Models.JSA_Attr>
+
+<style type="text/css">
+    .tablesorter tbody td
+    {
+        background-color: #F7FFF2;
+        text-align: center;
+    }
+    
+    .tablesorter tbody tr
+    {
+        cursor: pointer;
+    }
+
+    .tablesorter .header
+    {
+        background-image: url(@Url.Content("~/images/bg.png"));
+        background-position: 46% 5%;
+        background-repeat: no-repeat;
+        border-color: #CBE0AC;
+        cursor: pointer;
+        font-family: "Trebuchet MS",sans-serif;
+        font-weight: bold;
+        padding-bottom: 15px;
+        vertical-align: top;
+        
+    }
+
+    .tablesorter .headerSortUp
+    {
+        background-image: url(@Url.Content("~/images/asc.png"));
+        background-position: 44% 92%;
+        background-repeat: no-repeat;
+    }
+
+    .tablesorter .headerSortDown
+    {
+        background-image: url(@Url.Content("~/images/desc.png"));
+        background-position: 55% 87%;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#jsa").tablesorter();
+    });
+
+    function redirecturl(choice) {
+        var s = '@Url.Content("~/JSA/Index?JSA_ID=")' + choice + "&lang=" + '@Resources.Global.GlobalCurrentLang';
+        location.href = s;
+    }
+
+</script>
+<p>
+    <b>@Resources.Global.JSAThere @Model.Count() @Resources.Global.JSASearch</b></p>
+<table class="tablesorter" id="jsa" border="" cellpadding="2" cellspacing="1" style="overflow: hidden;
+    width: 100%; empty-cells: show; table-layout: fixed">
+    <thead>
+        <tr>
+            <th title="Sort by #" class="header" width="3%">
+                <b>#</b>
+            </th>
+            <th title="@Resources.Global.GlobalSort @Resources.Global.JSAIndexTaskToAnalize" class="header" width="17%">
+                <b>@Resources.Global.JSAIndexTaskToAnalize </b>
+            </th>
+            <th title="@Resources.Global.GlobalSort @Resources.Global.JSAIndexEnvironment" class="header" width="16%">
+                <b>@Resources.Global.JSAIndexEnvironment </b>
+            </th>
+            <th title="@Resources.Global.GlobalSort @Resources.Global.JSAIndexBranch" class="header"width="15%">
+                <b>@Resources.Global.JSAIndexBranch </b>
+            </th>
+            <th title="@Resources.Global.GlobalSort @Resources.Global.JSAIndexRegion" class="header" width="11%">
+                <b>@Resources.Global.JSAIndexRegion </b>
+            </th>
+            <th title="@Resources.Global.GlobalSort @Resources.Global.JSAIndexOrganisation" class="header" width="14%">
+                <b>@Resources.Global.JSAIndexOrganisation </b>
+            </th>
+            <th title="@Resources.Global.GlobalSort @Resources.Global.JSAIndexSupervisor" width="14%">
+                <b>@Resources.Global.JSAIndexSupervisor </b>
+            </th>
+            <th title="@Resources.Global.GlobalSort @Resources.Global.GlobalAuthor" class="header" width="12%">
+                <b>@Resources.Global.GlobalAuthor </b>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Safe_Task_Analysis.Models.JSA_Attr t in Model)
+            {
+                int s = t.JSAid;
+            @Html.Raw("<tr onclick='redirecturl(" + s + ")'><td>" + t.JSAid + "</td>");
+            @Html.Raw("<td> <div style='overflow:auto;'>" + t.TaskName + "</div></td>");
+            @Html.Raw("<td>" + t.WorkEnvironment.NameEn + "</td>");
+            @Html.Raw("<td>" + t.Branch.NameEn + "</td>");
+            @Html.Raw("<td>" + t.Region.NameEn + "</td>");
+            @Html.Raw("<td>" + t.Organisation.NameEn + "</td>");
+            @Html.Raw("<td>" + t.Supervisor.Description + "</td>");
+            @Html.Raw("<td>" + t.CreatedBy + "</td></tr>");
+            }
+        }
+    </tbody>
+</table>

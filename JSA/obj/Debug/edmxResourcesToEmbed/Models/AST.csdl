@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AST_DBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="AST_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAssociatedRisks" EntityType="AST_DBModel.tblAssociatedRisk" />
+    <EntitySet Name="tblPrevMesures" EntityType="AST_DBModel.tblPrevMesure" />
+    <EntitySet Name="tblRegions" EntityType="AST_DBModel.tblRegion" />
+    <EntitySet Name="tblRisks" EntityType="AST_DBModel.tblRisk" />
+    <EntitySet Name="tblRiskCategories" EntityType="AST_DBModel.tblRiskCategory" />
+    <EntitySet Name="tblSites" EntityType="AST_DBModel.tblSite" />
+    <EntitySet Name="tblSTAs" EntityType="AST_DBModel.tblSTA" />
+    <EntitySet Name="tblSubnets" EntityType="AST_DBModel.tblSubnet" />
+    <EntitySet Name="tblTasks" EntityType="AST_DBModel.tblTask" />
+    <EntitySet Name="tblTeams" EntityType="AST_DBModel.tblTeam" />
+    <EntitySet Name="tblWorkEnvs" EntityType="AST_DBModel.tblWorkEnv" />
+    <AssociationSet Name="FK_tblAssociatedRisk_tblRisk" Association="AST_DBModel.FK_tblAssociatedRisk_tblRisk">
+      <End Role="tblRisk" EntitySet="tblRisks" />
+      <End Role="tblAssociatedRisk" EntitySet="tblAssociatedRisks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblAssociatedRisk_tblTask" Association="AST_DBModel.FK_tblAssociatedRisk_tblTask">
+      <End Role="tblTask" EntitySet="tblTasks" />
+      <End Role="tblAssociatedRisk" EntitySet="tblAssociatedRisks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPrevMesure_tblAssociatedRisk" Association="AST_DBModel.FK_tblPrevMesure_tblAssociatedRisk">
+      <End Role="tblAssociatedRisk" EntitySet="tblAssociatedRisks" />
+      <End Role="tblPrevMesure" EntitySet="tblPrevMesures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSTA_tblRegion" Association="AST_DBModel.FK_tblSTA_tblRegion">
+      <End Role="tblRegion" EntitySet="tblRegions" />
+      <End Role="tblSTA" EntitySet="tblSTAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSubnet_tblRegion" Association="AST_DBModel.FK_tblSubnet_tblRegion">
+      <End Role="tblRegion" EntitySet="tblRegions" />
+      <End Role="tblSubnet" EntitySet="tblSubnets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRisk_tblRiskCategory" Association="AST_DBModel.FK_tblRisk_tblRiskCategory">
+      <End Role="tblRiskCategory" EntitySet="tblRiskCategories" />
+      <End Role="tblRisk" EntitySet="tblRisks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSTA_tblSite" Association="AST_DBModel.FK_tblSTA_tblSite">
+      <End Role="tblSite" EntitySet="tblSites" />
+      <End Role="tblSTA" EntitySet="tblSTAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSTA_tblWorkEnv" Association="AST_DBModel.FK_tblSTA_tblWorkEnv">
+      <End Role="tblWorkEnv" EntitySet="tblWorkEnvs" />
+      <End Role="tblSTA" EntitySet="tblSTAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTask_tblSTA" Association="AST_DBModel.FK_tblTask_tblSTA">
+      <End Role="tblSTA" EntitySet="tblSTAs" />
+      <End Role="tblTask" EntitySet="tblTasks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTeam_tblSTA" Association="AST_DBModel.FK_tblTeam_tblSTA">
+      <End Role="tblSTA" EntitySet="tblSTAs" />
+      <End Role="tblTeam" EntitySet="tblTeams" />
+    </AssociationSet>
+    <AssociationSet Name="tblSite_WorkEnv" Association="AST_DBModel.tblSite_WorkEnv">
+      <End Role="tblSite" EntitySet="tblSites" />
+      <End Role="tblWorkEnv" EntitySet="tblWorkEnvs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblAssociatedRisk">
+    <Key>
+      <PropertyRef Name="ID_Ass_Risk" />
+    </Key>
+    <Property Name="ID_Ass_Risk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Risk" Type="Int32" Nullable="false" />
+    <Property Name="Task_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblRisk" Relationship="AST_DBModel.FK_tblAssociatedRisk_tblRisk" FromRole="tblAssociatedRisk" ToRole="tblRisk" />
+    <NavigationProperty Name="tblTask" Relationship="AST_DBModel.FK_tblAssociatedRisk_tblTask" FromRole="tblAssociatedRisk" ToRole="tblTask" />
+    <NavigationProperty Name="tblPrevMesures" Relationship="AST_DBModel.FK_tblPrevMesure_tblAssociatedRisk" FromRole="tblAssociatedRisk" ToRole="tblPrevMesure" />
+  </EntityType>
+  <EntityType Name="tblPrevMesure">
+    <Key>
+      <PropertyRef Name="ID_Prev_Mesure" />
+    </Key>
+    <Property Name="ID_Prev_Mesure" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Risk_ID" Type="Int32" Nullable="false" />
+    <Property Name="Pre_Mesure" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblAssociatedRisk" Relationship="AST_DBModel.FK_tblPrevMesure_tblAssociatedRisk" FromRole="tblPrevMesure" ToRole="tblAssociatedRisk" />
+  </EntityType>
+  <EntityType Name="tblRegion">
+    <Key>
+      <PropertyRef Name="ID_Region" />
+    </Key>
+    <Property Name="ID_Region" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameFR" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblSTAs" Relationship="AST_DBModel.FK_tblSTA_tblRegion" FromRole="tblRegion" ToRole="tblSTA" />
+    <NavigationProperty Name="tblSubnets" Relationship="AST_DBModel.FK_tblSubnet_tblRegion" FromRole="tblRegion" ToRole="tblSubnet" />
+  </EntityType>
+  <EntityType Name="tblRisk">
+    <Key>
+      <PropertyRef Name="ID_Risk" />
+    </Key>
+    <Property Name="ID_Risk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="Int32" Nullable="false" />
+    <Property Name="NameFR" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="NameEN" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblAssociatedRisks" Relationship="AST_DBModel.FK_tblAssociatedRisk_tblRisk" FromRole="tblRisk" ToRole="tblAssociatedRisk" />
+    <NavigationProperty Name="tblRiskCategory" Relationship="AST_DBModel.FK_tblRisk_tblRiskCategory" FromRole="tblRisk" ToRole="tblRiskCategory" />
+  </EntityType>
+  <EntityType Name="tblRiskCategory">
+    <Key>
+      <PropertyRef Name="ID_RiskCat" />
+    </Key>
+    <Property Name="ID_RiskCat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameFR" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblRisks" Relationship="AST_DBModel.FK_tblRisk_tblRiskCategory" FromRole="tblRiskCategory" ToRole="tblRisk" />
+  </EntityType>
+  <EntityType Name="tblSite">
+    <Key>
+      <PropertyRef Name="ID_Site" />
+    </Key>
+    <Property Name="ID_Site" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteNameFR" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SaiteNameEN" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblSTAs" Relationship="AST_DBModel.FK_tblSTA_tblSite" FromRole="tblSite" ToRole="tblSTA" />
+    <NavigationProperty Name="tblWorkEnvs" Relationship="AST_DBModel.tblSite_WorkEnv" FromRole="tblSite" ToRole="tblWorkEnv" />
+  </EntityType>
+  <EntityType Name="tblSTA">
+    <Key>
+      <PropertyRef Name="ID_STA" />
+    </Key>
+    <Property Name="ID_STA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Region" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="Int32" Nullable="false" />
+    <Property Name="Team" Type="Int32" Nullable="false" />
+    <Property Name="WorkEnv" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
+    <Property Name="Helmet" Type="Boolean" />
+    <Property Name="Goggles" Type="Boolean" />
+    <Property Name="HearPlugs" Type="Boolean" />
+    <Property Name="Gloves" Type="Boolean" />
+    <Property Name="Boots" Type="Boolean" />
+    <Property Name="BreathingMask" Type="Boolean" />
+    <NavigationProperty Name="tblRegion" Relationship="AST_DBModel.FK_tblSTA_tblRegion" FromRole="tblSTA" ToRole="tblRegion" />
+    <NavigationProperty Name="tblSite" Relationship="AST_DBModel.FK_tblSTA_tblSite" FromRole="tblSTA" ToRole="tblSite" />
+    <NavigationProperty Name="tblWorkEnv" Relationship="AST_DBModel.FK_tblSTA_tblWorkEnv" FromRole="tblSTA" ToRole="tblWorkEnv" />
+    <NavigationProperty Name="tblTasks" Relationship="AST_DBModel.FK_tblTask_tblSTA" FromRole="tblSTA" ToRole="tblTask" />
+    <NavigationProperty Name="tblTeams" Relationship="AST_DBModel.FK_tblTeam_tblSTA" FromRole="tblSTA" ToRole="tblTeam" />
+  </EntityType>
+  <EntityType Name="tblSubnet">
+    <Key>
+      <PropertyRef Name="ID_SubNET" />
+    </Key>
+    <Property Name="ID_SubNET" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subnet" Type="String" Nullable="false" MaxLength="9" Unicode="false" FixedLength="true" />
+    <Property Name="Site_ID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblRegion" Relationship="AST_DBModel.FK_tblSubnet_tblRegion" FromRole="tblSubnet" ToRole="tblRegion" />
+  </EntityType>
+  <EntityType Name="tblTask">
+    <Key>
+      <PropertyRef Name="ID_Task" />
+    </Key>
+    <Property Name="ID_Task" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderNo" Type="Int32" Nullable="false" />
+    <Property Name="STA_ID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblAssociatedRisks" Relationship="AST_DBModel.FK_tblAssociatedRisk_tblTask" FromRole="tblTask" ToRole="tblAssociatedRisk" />
+    <NavigationProperty Name="tblSTA" Relationship="AST_DBModel.FK_tblTask_tblSTA" FromRole="tblTask" ToRole="tblSTA" />
+  </EntityType>
+  <EntityType Name="tblTeam">
+    <Key>
+      <PropertyRef Name="ID_Team" />
+      <PropertyRef Name="Site_ID" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="ID_Team" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Site_ID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblSTA" Relationship="AST_DBModel.FK_tblTeam_tblSTA" FromRole="tblTeam" ToRole="tblSTA" />
+  </EntityType>
+  <EntityType Name="tblWorkEnv">
+    <Key>
+      <PropertyRef Name="ID_WorkEnv" />
+    </Key>
+    <Property Name="ID_WorkEnv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameFR" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblSTAs" Relationship="AST_DBModel.FK_tblSTA_tblWorkEnv" FromRole="tblWorkEnv" ToRole="tblSTA" />
+    <NavigationProperty Name="tblSites" Relationship="AST_DBModel.tblSite_WorkEnv" FromRole="tblWorkEnv" ToRole="tblSite" />
+  </EntityType>
+  <Association Name="FK_tblAssociatedRisk_tblRisk">
+    <End Role="tblRisk" Type="AST_DBModel.tblRisk" Multiplicity="1" />
+    <End Role="tblAssociatedRisk" Type="AST_DBModel.tblAssociatedRisk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRisk">
+        <PropertyRef Name="ID_Risk" />
+      </Principal>
+      <Dependent Role="tblAssociatedRisk">
+        <PropertyRef Name="Risk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblAssociatedRisk_tblTask">
+    <End Role="tblTask" Type="AST_DBModel.tblTask" Multiplicity="1" />
+    <End Role="tblAssociatedRisk" Type="AST_DBModel.tblAssociatedRisk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTask">
+        <PropertyRef Name="ID_Task" />
+      </Principal>
+      <Dependent Role="tblAssociatedRisk">
+        <PropertyRef Name="Task_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPrevMesure_tblAssociatedRisk">
+    <End Role="tblAssociatedRisk" Type="AST_DBModel.tblAssociatedRisk" Multiplicity="1" />
+    <End Role="tblPrevMesure" Type="AST_DBModel.tblPrevMesure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAssociatedRisk">
+        <PropertyRef Name="ID_Ass_Risk" />
+      </Principal>
+      <Dependent Role="tblPrevMesure">
+        <PropertyRef Name="Risk_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSTA_tblRegion">
+    <End Role="tblRegion" Type="AST_DBModel.tblRegion" Multiplicity="1" />
+    <End Role="tblSTA" Type="AST_DBModel.tblSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRegion">
+        <PropertyRef Name="ID_Region" />
+      </Principal>
+      <Dependent Role="tblSTA">
+        <PropertyRef Name="Region" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSubnet_tblRegion">
+    <End Role="tblRegion" Type="AST_DBModel.tblRegion" Multiplicity="1" />
+    <End Role="tblSubnet" Type="AST_DBModel.tblSubnet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRegion">
+        <PropertyRef Name="ID_Region" />
+      </Principal>
+      <Dependent Role="tblSubnet">
+        <PropertyRef Name="Site_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRisk_tblRiskCategory">
+    <End Role="tblRiskCategory" Type="AST_DBModel.tblRiskCategory" Multiplicity="1" />
+    <End Role="tblRisk" Type="AST_DBModel.tblRisk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRiskCategory">
+        <PropertyRef Name="ID_RiskCat" />
+      </Principal>
+      <Dependent Role="tblRisk">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSTA_tblSite">
+    <End Role="tblSite" Type="AST_DBModel.tblSite" Multiplicity="1" />
+    <End Role="tblSTA" Type="AST_DBModel.tblSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSite">
+        <PropertyRef Name="ID_Site" />
+      </Principal>
+      <Dependent Role="tblSTA">
+        <PropertyRef Name="Site" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSTA_tblWorkEnv">
+    <End Role="tblWorkEnv" Type="AST_DBModel.tblWorkEnv" Multiplicity="1" />
+    <End Role="tblSTA" Type="AST_DBModel.tblSTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblWorkEnv">
+        <PropertyRef Name="ID_WorkEnv" />
+      </Principal>
+      <Dependent Role="tblSTA">
+        <PropertyRef Name="WorkEnv" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTask_tblSTA">
+    <End Role="tblSTA" Type="AST_DBModel.tblSTA" Multiplicity="1" />
+    <End Role="tblTask" Type="AST_DBModel.tblTask" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSTA">
+        <PropertyRef Name="ID_STA" />
+      </Principal>
+      <Dependent Role="tblTask">
+        <PropertyRef Name="STA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTeam_tblSTA">
+    <End Role="tblSTA" Type="AST_DBModel.tblSTA" Multiplicity="1" />
+    <End Role="tblTeam" Type="AST_DBModel.tblTeam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSTA">
+        <PropertyRef Name="ID_STA" />
+      </Principal>
+      <Dependent Role="tblTeam">
+        <PropertyRef Name="ID_Team" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblSite_WorkEnv">
+    <End Role="tblSite" Type="AST_DBModel.tblSite" Multiplicity="*" />
+    <End Role="tblWorkEnv" Type="AST_DBModel.tblWorkEnv" Multiplicity="*" />
+  </Association>
+</Schema>

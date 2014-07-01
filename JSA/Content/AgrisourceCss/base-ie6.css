@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+Terms and conditions of use: http://tbs-sct.ircan.gc.ca/projects/gcwwwtemplates/wiki/Terms
+Conditions régissant l'utilisation : http://tbs-sct.ircan.gc.ca/projects/gcwwwtemplates/wiki/Conditions
+*/
+
+#cn-body-inner-3col fieldset {width: 97%;}
+#cn-body-inner-1col #cn-foot {margin-top: -0.21em;}
+#cn-body-inner-3col #cn-cols, #cn-body-inner-2col #cn-cols {position: relative;}
+#cn-cols {float: none; width: auto;}
+#cn-centre-col-inner {padding-bottom: 1px;}
+#cn-centre-col-inner, #cn-left-col-inner, #cn-right-col-inner {height: 1%;}
+#cn-left-col-gap, #cn-centre-col-gap, #cn-right-col-gap {height: 1000em;}
+#cn-right-col-gap {right: 8%;}
+#cn-left-col a, #cn-right-col a {height: 1%;}
+#cn-left-col li, #cn-right-col li {display: inline-block;}
+
+#cn-foot {margin-bottom: -10px;}

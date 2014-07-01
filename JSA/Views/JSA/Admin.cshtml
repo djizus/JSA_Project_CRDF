@@ -1,0 +1,221 @@
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_AgriLookLayout.cshtml";
+    ViewBag.CurrentURL = "~/JSA/Admin?";
+}
+@section CssStyle{
+    <style type="text/css">
+        select
+        {
+            width: 25em;
+        }
+    </style>
+}
+@section BrCrumb{
+    <li><a rel="up" href="@Url.Content("~/Home/Index2?lang=" + @Resources.Global.GlobalCurrentLang)" title="@Resources.Global.GlobalHome">@Resources.Global.GlobalHome</a>&#160;&#62;</li>
+    <li><a rel="up" href="@Url.Content("~/JSA/Admin?lang=" + @Resources.Global.GlobalCurrentLang)" title="@Resources.Global.JSAIndexAdmin">@Resources.Global.JSAIndexAdmin</a>&#160;&#62;</li>
+}
+@section JavaScript{
+    <script type="text/javascript">
+
+        $(function () {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+        });
+
+        $.fn.loadWithoutCache = function () {
+            var elem = $(this);
+            var args = arguments[1];
+            var func = arguments[2];
+            if (args == undefined)
+                args = {};
+            $.ajax({
+                url: arguments[0],
+                cache: false,
+                data: args,
+                dataType: "html",
+                success: function (data, textStatus, XMLHttpRequest) {
+                    elem.html(data);
+                    if (func != undefined) {
+                        func(data, textStatus, XMLHttpRequest);
+                    }
+                }
+            });
+            return elem;
+        }
+
+        function UpdateContent(ref, div_name, page, param_name) {
+            var d = document.getElementById(div_name);
+            if (ref.selectedIndex > 0) {
+                d.innerHTML = "";
+                if (param_name != null)
+                    $("#" + div_name).loadWithoutCache(page + "?" + param_name + "=" + ref.value + "&lang=@Resources.Global.GlobalCurrentLang");
+                else
+                    $("#" + div_name).loadWithoutCache(page);
+            }
+            else
+                DisableFollowingCbo(ref);
+        }
+    </script>
+}
+<h1>@Resources.Global.JSAIndexAdmin</h1>
+<br />
+<div id="FullJSA">
+    <div id="accordion">
+        <h3>
+            <a href="#">@Resources.Global.JSAIndexGestion @Resources.Global.JSAIndexAdmins</a></h3>
+        <div id="admin">
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSACreateNew @Resources.Global.JSAIndexAdmin :
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSANewAdmin :
+            <input type="text" id="adminadd" />
+            <input type="button" onclick="Add('admin')" value="@Resources.Global.GlobalAdd" />
+            <br />
+            <br />
+            <hr width="100%" />
+            &nbsp;&nbsp;@Resources.Global.JSALister @Resources.Global.JSAIndexAdmins :
+            @{Html.RenderAction("getAdmins");}
+            <input type="button" onclick="Delete('admin')" value="@Resources.Global.GlobalDelete" />
+        </div>
+
+        <h3>
+            <a href="#">@Resources.Global.JSAIndexGestion @Resources.Global.JSAIndexBranchs</a></h3>
+        <div id="branch">
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSACreateNewe @Resources.Global.JSAIndexBranch :
+            <br />
+            <br />
+            &nbsp;&nbsp;Nom Francais :
+            <input type="text" id="branchadd" />
+            &nbsp;&nbsp;English Name :
+            <input type="text" id="branchadd2" />
+            <input type="button" onclick="Add('branch')" value="@Resources.Global.GlobalAdd" />
+            <br />
+            <br />
+            <hr width="100%" />
+            &nbsp;&nbsp;@Resources.Global.JSALister @Resources.Global.JSAIndexBranchs :
+            @{Html.RenderAction("getBranch", new { lang = @Resources.Global.GlobalCurrentLang });}
+            <input type="button" onclick="Modify('branch')" value="@Resources.Global.GlobalModify" />
+            <input type="button" onclick="Delete('branch')" value="@Resources.Global.GlobalDelete" />
+        </div>
+
+        <h3>
+            <a href="#">@Resources.Global.JSAIndexGestion @Resources.Global.JSAIndexEnvironments</a></h3>
+        <div id="env">
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSACreateNew @Resources.Global.JSAIndexEnvironment
+            :
+            <br />
+            <br />
+            &nbsp;&nbsp;Nom Francais :
+            <input type="text" id="envadd" />
+            &nbsp;&nbsp;English Name :
+            <input type="text" id="envadd2" />
+            <input type="button" onclick="Add('env')" value="@Resources.Global.GlobalAdd" />
+            <br />
+            <br />
+            <hr width="100%" />
+            &nbsp;&nbsp;@Resources.Global.JSALister @Resources.Global.JSAIndexEnvironments :
+            @{Html.RenderAction("getWorkEnv", new { lang = @Resources.Global.GlobalCurrentLang });}
+            <input type="button" onclick="Modify('env')" value="@Resources.Global.GlobalModify" />
+            <input type="button" onclick="Delete('env')" value="@Resources.Global.GlobalDelete" />
+        </div>
+
+        <h3>
+            <a href="#">@Resources.Global.JSAIndexGestion @Resources.Global.JSAIndexRegions</a></h3>
+        <div id="region">
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSACreateNewe @Resources.Global.JSAIndexRegion :
+            <br />
+            <br />
+            &nbsp;&nbsp;Nom Francais :
+            <input type="text" id="regionadd" />
+            &nbsp;&nbsp;English Name :
+            <input type="text" id="regionadd2" />
+            <input type="button" onclick="Add('region')" value="@Resources.Global.GlobalAdd" />
+            <br />
+            <br />
+            <hr width="100%" />
+            &nbsp;&nbsp;@Resources.Global.JSALister @Resources.Global.JSAIndexRegions
+            @{Html.RenderAction("getRegions", new { lang = @Resources.Global.GlobalCurrentLang });}
+            <input type="button" onclick="Modify('region')" value="@Resources.Global.GlobalModify" />
+            <input type="button" onclick="Delete('region')" value="@Resources.Global.GlobalDelete" />
+        </div>
+
+        <h3>
+            <a href="#">@Resources.Global.JSAIndexGestion @Resources.Global.JSAIndexOrganisations</a></h3>
+        <div id="DivOrganisation">
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSACreateNewe @Resources.Global.JSAIndexOrganisation
+            :
+            <br />
+            <br />
+            &nbsp;&nbsp;Nom Francais :
+            <input type="text" id="Organisationadd" />
+            &nbsp;&nbsp;English Name :
+            <input type="text" id="Organisationadd2" />
+            <br />
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSAIndexRegion @Resources.Global.JSAAssociated
+            @{Html.RenderAction("getRegions", new { lang = @Resources.Global.GlobalCurrentLang, current = 0 });}
+            <input type="button" onclick="Add('Organisation')" value="@Resources.Global.GlobalAdd" />
+            <br />
+            <br />
+            <hr width="100%" />
+            &nbsp;&nbsp;@Resources.Global.JSALister @Resources.Global.JSAIndexOrganisation :
+            @{Html.RenderAction("getOrganisationByRegion", new { RegionID = 0 });}
+            <input type="button" onclick="Modify('Organisation')" value="@Resources.Global.GlobalModify" />
+            <input type="button" onclick="Delete('Organisation')" value="@Resources.Global.GlobalDelete" />
+        </div>
+
+        <h3>
+            <a href="#">@Resources.Global.JSAIndexGestion @Resources.Global.JSAIndexSupervisors</a></h3>
+        <div id="DivSupervisor">
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSACreateNew @Resources.Global.JSAIndexSupervisor
+            :
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSACreateSupervisorInstructions :
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSAIndexSupervisor name :
+            <input type="text" id="supervisoradd" />
+            <br />
+            <br />
+            &nbsp;&nbsp;@Resources.Global.JSAIndexOrganisation @Resources.Global.JSAAssociated
+            <br />
+            @{Html.RenderAction("getRegions", new { lang = @Resources.Global.GlobalCurrentLang, current = 0 });}
+            <br />
+            <span id="OrganisationDiv">
+                @{Html.RenderAction("getOrganisationByRegion", new { RegionID = 0, lang = @Resources.Global.GlobalCurrentLang, current = 0, disabled = "true" });}
+            </span>
+            <input type="button" onclick="Add('supervisor')" value="@Resources.Global.GlobalAdd" />
+            <br />
+            <br />
+            <hr align="center" width="100%" />
+            &nbsp;&nbsp;@Resources.Global.JSALister @Resources.Global.JSAIndexSupervisors :
+            <span id="SupervisorDiv">
+                @{Html.RenderAction("getSupervisorByOrganisation", new { OrganisationID = 0, lang = @Resources.Global.GlobalCurrentLang, current = 0, disabled = "true" });}
+            </span>
+            <input type="button" onclick="Modify('supervisor')" value="@Resources.Global.GlobalModify" />
+            <input type="button" onclick="Delete('supervisor')" value="@Resources.Global.GlobalDelete" />
+            <br />
+            <br />
+        </div>
+
+        <h3>
+            <a href="#">@Resources.Global.JSAGlobalStats</a></h3>
+        <div id="stats">
+            @{Html.RenderAction("loadStatistics");}
+        </div>
+    </div>
+    <br />
+</div>
+@functions{
+    string getCurrentURL()
+    {
+        string s = @Url.Content("~/JSA/Admin?");
+        return s;
+    }
+}

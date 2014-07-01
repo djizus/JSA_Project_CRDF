@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GlobalAAFCOnline" xml:space="preserve">
+    <value>AAFC Online</value>
+  </data>
+  <data name="GlobalAAFCOnlineURL" xml:space="preserve">
+    <value>http://www.agr.gc.ca/index_e.php</value>
+  </data>
+  <data name="GlobalContact" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="GlobalCurrentLang" xml:space="preserve">
+    <value>eng</value>
+  </data>
+  <data name="GlobalHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="GlobalHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="GlobalImportantNotice" xml:space="preserve">
+    <value>Important Notice</value>
+  </data>
+  <data name="GlobalModificationDate" xml:space="preserve">
+    <value>Date modified</value>
+  </data>
+  <data name="GlobalPageTop" xml:space="preserve">
+    <value>Top of Page</value>
+  </data>
+  <data name="GlobalPubliservice" xml:space="preserve">
+    <value>Publiservice</value>
+  </data>
+  <data name="GlobalSafeTaskAnalysisTitle" xml:space="preserve">
+    <value>Job Safety Analysis</value>
+  </data>
+  <data name="GlobalSigName" xml:space="preserve">
+    <value>sig-eng.gif</value>
+  </data>
+  <data name="GlobalSwitchLang" xml:space="preserve">
+    <value>fra</value>
+  </data>
+  <data name="GlobalSwitchLanguage" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="GlobalWebAddr" xml:space="preserve">
+    <value>QcSthyaweb3/JSA</value>
+  </data>
+  <data name="HomeIndex2Body" xml:space="preserve">
+    <value>Body of index 2 page in English</value>
+  </data>
+  <data name="HomeIndex2Desc1" xml:space="preserve">
+    <value>The Job Safety Analysis (JSA) process provides a way of identifying job-related hazards and determining preventive measures. </value>
+  </data>
+  <data name="HomeIndex2Desc2" xml:space="preserve">
+    <value>This involves carefully analysing each task of a job, identifying potential health and safety hazards at each step and determining practical ways of preventing or mitigating such hazards.</value>
+  </data>
+  <data name="HomeIndex2NewAST" xml:space="preserve">
+    <value>Create new JSA</value>
+  </data>
+  <data name="HomeIndex2SearchAST" xml:space="preserve">
+    <value>Search existing JSAs</value>
+  </data>
+  <data name="HomeIndex2WTD" xml:space="preserve">
+    <value>Choose any of the following options:</value>
+  </data>
+  <data name="HomeIndexBody1" xml:space="preserve">
+    <value>Job Safety Analysis (JSA)</value>
+  </data>
+  <data name="HomeIndexBody2" xml:space="preserve">
+    <value>Analyse Sécuritaire de Tâches</value>
+  </data>
+  <data name="HomeIndexTitle" xml:space="preserve">
+    <value>Job Safety Analysis / Analyse Sécuritaire de Tâches</value>
+  </data>
+  <data name="JSAIndexNewJSA" xml:space="preserve">
+    <value>New JSA</value>
+  </data>
+  <data name="JSAIndexNewJSAe" xml:space="preserve">
+    <value>Create a new Job Safety Analysis</value>
+  </data>
+  <data name="JSAIndexTitle" xml:space="preserve">
+    <value>Job Safety Analysis</value>
+  </data>
+  <data name="JSAIndexChooseEnvironment" xml:space="preserve">
+    <value>Please select an environment</value>
+  </data>
+  <data name="JSAIndexChooseRegion" xml:space="preserve">
+    <value>Please select a region</value>
+  </data>
+  <data name="JSAIndexChooseSupervisor" xml:space="preserve">
+    <value>Please select a supervisor</value>
+  </data>
+  <data name="JSAIndexChooseOrganisation" xml:space="preserve">
+    <value>Please select an organisation</value>
+  </data>
+  <data name="JSAIndexEnvironment" xml:space="preserve">
+    <value>Environment</value>
+  </data>
+  <data name="JSAIndexRegion" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="JSAIndexOrganisation" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="JSAIndexSupervisor" xml:space="preserve">
+    <value>Supervisor</value>
+  </data>
+  <data name="GlobalAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="GlobalModDate" xml:space="preserve">
+    <value>Last modified</value>
+  </data>
+  <data name="GlobalSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="JSAIndexChooseTaskName" xml:space="preserve">
+    <value>Please enter a name for this task</value>
+  </data>
+  <data name="JSAIndexTaskToAnalize" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="JSAIndexPotentialRisk" xml:space="preserve">
+    <value>Potential Risks</value>
+  </data>
+  <data name="JSAIndexPreventiveMesures" xml:space="preserve">
+    <value>Preventive Measures</value>
+  </data>
+  <data name="JSAIndexTaskOrder" xml:space="preserve">
+    <value>Tasks order</value>
+  </data>
+  <data name="GlobalAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="GlobalAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="GlobalCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="GlobalDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="GlobalEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="JSAIndexChoosePotentialRisk" xml:space="preserve">
+    <value>Please choose a potential risk</value>
+  </data>
+  <data name="JSAIndexChooseRiskCat" xml:space="preserve">
+    <value>Choose a risk category</value>
+  </data>
+  <data name="JSAIndexEnterTaskDesc" xml:space="preserve">
+    <value>Add a new step</value>
+  </data>
+  <data name="JSAIndexEnterPrevMes" xml:space="preserve">
+    <value>Step 5/7 : Add a preventive mesure</value>
+  </data>
+  <data name="GlobalUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="JSAIndexAddAssRisk" xml:space="preserve">
+    <value>Add associated risk</value>
+  </data>
+  <data name="JSAIndexAddPrevMes" xml:space="preserve">
+    <value>Add a preventive measure</value>
+  </data>
+  <data name="JSAIndexSureDelete1" xml:space="preserve">
+    <value>Are you sure you want to delete</value>
+  </data>
+  <data name="JSAIndexSureDelete2" xml:space="preserve">
+    <value>and all its related risks and preventive mesures ? This cannot be reversed.</value>
+  </data>
+  <data name="JSAIndexSureDelete3" xml:space="preserve">
+    <value>and all its related preventive mesures ? This cannot be reversed.</value>
+  </data>
+  <data name="JSAIndexSureDelete4" xml:space="preserve">
+    <value>? This CANNOT be reversed.</value>
+  </data>
+  <data name="JSAIndexChooseSafetyEquip" xml:space="preserve">
+    <value>Please choose the required safety equipment.</value>
+  </data>
+  <data name="GlobalFinish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="GlobalMoveDown" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
+  <data name="GlobalMoveUp" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="JSAIndexSafeTyEquip" xml:space="preserve">
+    <value>Safety Equipment</value>
+  </data>
+  <data name="GlobalExportPDF" xml:space="preserve">
+    <value>Export to PDF</value>
+  </data>
+  <data name="GlobalPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="GlobalReturn" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="JSAIndexModifyJSA" xml:space="preserve">
+    <value>Edit JSA</value>
+  </data>
+  <data name="JSAIndexModifyJSAe" xml:space="preserve">
+    <value>JSA</value>
+  </data>
+  <data name="JSAIndexAddRisk" xml:space="preserve">
+    <value>Step 4/7 : Add an associated risk</value>
+  </data>
+  <data name="JSAIndexAddTask" xml:space="preserve">
+    <value>Step 3/7 : Add a task</value>
+  </data>
+  <data name="GlobalNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="JSAexportPdfNoneRequired" xml:space="preserve">
+    <value>None required</value>
+  </data>
+  <data name="ByJSA" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="HomeIndex2Tuto" xml:space="preserve">
+    <value>Consult a basic training on JSA</value>
+  </data>
+  <data name="TutorialJSA" xml:space="preserve">
+    <value>Tutorial</value>
+  </data>
+  <data name="SearchJSA" xml:space="preserve">
+    <value>Search an existing JSA</value>
+  </data>
+  <data name="AddTaskDesc" xml:space="preserve">
+    <value>Add a new step</value>
+  </data>
+  <data name="JSAIndexEnterRisk" xml:space="preserve">
+    <value>Add a new risk</value>
+  </data>
+  <data name="HomeIndex2Admin" xml:space="preserve">
+    <value>Administrate the application</value>
+  </data>
+  <data name="GlobalAdminStatistics" xml:space="preserve">
+    <value>Statistics of the application</value>
+  </data>
+  <data name="JSAAdminPres" xml:space="preserve">
+    <value>What do you want to do ? Here's a list of all availables choices :</value>
+  </data>
+  <data name="JSAIndexAdmin" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="JSAIndexGestion" xml:space="preserve">
+    <value>Management of</value>
+  </data>
+  <data name="JSALister" xml:space="preserve">
+    <value>List of the</value>
+  </data>
+  <data name="JSACreateNew" xml:space="preserve">
+    <value>Create a new</value>
+  </data>
+  <data name="JSANewAdmin" xml:space="preserve">
+    <value>Enter the Windows login</value>
+  </data>
+  <data name="JSAIndexBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="JSAIndexChooseBranch" xml:space="preserve">
+    <value>Please select a branch</value>
+  </data>
+  <data name="GlobalModify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="GlobalCreateDate" xml:space="preserve">
+    <value>Creation date</value>
+  </data>
+  <data name="GlobalModAuthor" xml:space="preserve">
+    <value>Last modification by</value>
+  </data>
+  <data name="GlobalSort" xml:space="preserve">
+    <value>Sort by</value>
+  </data>
+  <data name="JSACreateSupervisorInstructions" xml:space="preserve">
+    <value>Please enter a supervisor with the following format : Last Name, First Name</value>
+  </data>
+  <data name="JSATipTask1" xml:space="preserve">
+    <value>Keep the tasks in their correct chronological sequence</value>
+  </data>
+  <data name="JSATipHeader" xml:space="preserve">
+    <value>Purposes of information’s collection are to compile, archive and ensure the periodic review of JSAs for  supervisors, managers, Local OHS Committees (or OHS representatives), Regional OHS Coordinators or National Policy Committee.
+
+Precise reports creation and sorting information’s first required the specification of the following fields:</value>
+  </data>
+  <data name="JSATipPrevMes" xml:space="preserve">
+    <value>This step is determining ways to eliminate or mitigate the hazards identified by following common hazard control strategies, in order of preference :</value>
+  </data>
+  <data name="JSATipPrevMes1" xml:space="preserve">
+    <value>The eliminate the hazard;</value>
+  </data>
+  <data name="JSATipPrevMes2" xml:space="preserve">
+    <value>The reduction of hazard, including isolating it;</value>
+  </data>
+  <data name="JSATipPrevMes3" xml:space="preserve">
+    <value>The provision of personal protective equipment, clothing, devices or materials;</value>
+  </data>
+  <data name="JSATipPrevMes4" xml:space="preserve">
+    <value>Administratives procedures.</value>
+  </data>
+  <data name="JSATipRisk" xml:space="preserve">
+    <value>Try to identify hazards associated to your job step.
+
+To help you, see the checklist that regroup typical hazards by categories and expose the most common examples.</value>
+  </data>
+  <data name="JSATipRisk1" xml:space="preserve">
+    <value>Associates hazards as much as you can find for each tasks</value>
+  </data>
+  <data name="JSATipRisk2" xml:space="preserve">
+    <value>Use short, clear and concise terminology to expose the hazard nature</value>
+  </data>
+  <data name="JSATipRisk3" xml:space="preserve">
+    <value>Avoid the use of too general hazard (ex: hazardous to health, risk of dying) or too specific (ex: can cause third degree burn)</value>
+  </data>
+  <data name="JSATipTask" xml:space="preserve">
+    <value>A rule of thumb is that most jobs can be described in less than ten tasks. Otherwise, it is recommended to split the job, each segment subject to a distinct JSA. Tips :</value>
+  </data>
+  <data name="JSATipTask2" xml:space="preserve">
+    <value>Start with an action verb, short, accurate, concise</value>
+  </data>
+  <data name="JSATipTask3" xml:space="preserve">
+    <value>Avoid to present the statement in his negative form using "Do not"</value>
+  </data>
+  <data name="JSATipTask4" xml:space="preserve">
+    <value>Notes should be made of what is to be done rather than how it is done</value>
+  </data>
+  <data name="JSATipTaskName" xml:space="preserve">
+    <value>Ideally, a JSA should be performed for all jobs. However, there are practical constraints on time and resources. For these reasons, it is usually necessary to set priorities.
+
+Your manager or supervisor has probably provided you reasons that motivate the actual creating process of you JSA.</value>
+  </data>
+  <data name="JSAGlobalStats" xml:space="preserve">
+    <value>Statistics of the application</value>
+  </data>
+  <data name="JSAAssociated" xml:space="preserve">
+    <value>Associated</value>
+  </data>
+  <data name="JSACreateNewe" xml:space="preserve">
+    <value>Create a new</value>
+  </data>
+  <data name="JSAIndexAdmins" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="JSAIndexBranchs" xml:space="preserve">
+    <value>Branchs</value>
+  </data>
+  <data name="JSAIndexChooseAdmin" xml:space="preserve">
+    <value>Please chose an administrator</value>
+  </data>
+  <data name="JSAIndexChooseAuthor" xml:space="preserve">
+    <value>Please chose an author</value>
+  </data>
+  <data name="JSAIndexEnvironments" xml:space="preserve">
+    <value>Environments</value>
+  </data>
+  <data name="JSAIndexOrganisations" xml:space="preserve">
+    <value>Organisations</value>
+  </data>
+  <data name="JSAIndexRegions" xml:space="preserve">
+    <value>Regions</value>
+  </data>
+  <data name="JSAIndexSupervisors" xml:space="preserve">
+    <value>Supervisors</value>
+  </data>
+  <data name="JSADocumentAssociated" xml:space="preserve">
+    <value>Associated document</value>
+  </data>
+  <data name="HomeIndex2Desc3" xml:space="preserve">
+    <value>These preventive measures can then be integrated into an employer’s work practices and procedures for the job.</value>
+  </data>
+  <data name="HomeIndex2Objective1" xml:space="preserve">
+    <value>Recall highlights of the OHS-500 training on Job Safety  Analysis of Safe (JSA)</value>
+  </data>
+  <data name="HomeIndex2Objective2" xml:space="preserve">
+    <value>Explain the registration steps of JSAs by using the archive and writing tool available</value>
+  </data>
+  <data name="HomeIndex2Objective3" xml:space="preserve">
+    <value>Promote the sharing of information on JSA in the Department</value>
+  </data>
+  <data name="HomeIndex2Objectives" xml:space="preserve">
+    <value>Database objectives :</value>
+  </data>
+  <data name="HomeJSATitle1" xml:space="preserve">
+    <value>Use a standard writing template integrating information’s to the Departmental database</value>
+  </data>
+  <data name="HomeJSATitle2" xml:space="preserve">
+    <value>Visualize JSAs available and adapt it to personal situations</value>
+  </data>
+  <data name="HomeJSATitle3" xml:space="preserve">
+    <value>A tutorial that explains the process of writing a JSA step by step
+(recommended at first occurrence)</value>
+  </data>
+  <data name="HomeJSATitle4" xml:space="preserve">
+    <value>Enable the menus modification, compilation, archiving and monitoring</value>
+  </data>
+  <data name="GlobalCopy" xml:space="preserve">
+    <value>Copy to a new JSA</value>
+  </data>
+  <data name="Tuto1" xml:space="preserve">
+    <value>Consult the PowerPoint of the application</value>
+  </data>
+  <data name="Tuto2" xml:space="preserve">
+    <value>Consult an example of completed JSA</value>
+  </data>
+  <data name="GlobalError1" xml:space="preserve">
+    <value>Fill in the blank !</value>
+  </data>
+  <data name="GlobalError2" xml:space="preserve">
+    <value>Task failed !</value>
+  </data>
+  <data name="GlobalSuccess" xml:space="preserve">
+    <value>Success !</value>
+  </data>
+  <data name="GeneralInformations" xml:space="preserve">
+    <value>General informations :</value>
+  </data>
+  <data name="GlobalUpload" xml:space="preserve">
+    <value>Attach the file</value>
+  </data>
+  <data name="JSAHeader1" xml:space="preserve">
+    <value>Step 1/7 : Choice of the job to analyse</value>
+  </data>
+  <data name="JSAHeader2" xml:space="preserve">
+    <value>Step 2/7 : Fill the informations needed for an accurate storage</value>
+  </data>
+  <data name="JSADB" xml:space="preserve">
+    <value>JSAs in the database !</value>
+  </data>
+  <data name="JSASearch" xml:space="preserve">
+    <value>JSA(s) for your research :</value>
+  </data>
+  <data name="JSAStep6" xml:space="preserve">
+    <value>Step 6/7 : Communicating to employees concerned</value>
+  </data>
+  <data name="JSAStep6a" xml:space="preserve">
+    <value>Send JSA to employees who will perform the job</value>
+  </data>
+  <data name="JSAStep6b" xml:space="preserve">
+    <value>Add JSA to any existing protocol or procedure if required</value>
+  </data>
+  <data name="JSAStep6c" xml:space="preserve">
+    <value>Provide training to new employees by using JSA</value>
+  </data>
+  <data name="JSAStep7" xml:space="preserve">
+    <value>Step 7/7 : Periodic Review</value>
+  </data>
+  <data name="JSAStep7a" xml:space="preserve">
+    <value>Revise JSA when the task changes</value>
+  </data>
+  <data name="JSAStep7b" xml:space="preserve">
+    <value>Revise JSA when a new hazard is detected</value>
+  </data>
+  <data name="JSAStep7c" xml:space="preserve">
+    <value>Your Local Health and Safety Committee (or OHS representative) will determine the local revision process applicable for your JSA</value>
+  </data>
+  <data name="JSAThere" xml:space="preserve">
+    <value>There are </value>
+  </data>
+  <data name="JSAMailTo" xml:space="preserve">
+    <value>Email this JSA</value>
+  </data>
+  <data name="JSAGoingToStep67" xml:space="preserve">
+    <value>The next steps are directly related to the writing of your JSA.
+Keep in mind that you will be able to enhance your JSA with these optional features :</value>
+  </data>
+  <data name="JSAGoingToStep671" xml:space="preserve">
+    <value>Add Personal Protective Equipment icons</value>
+  </data>
+  <data name="JSAGoingToStep672" xml:space="preserve">
+    <value>Add General Information to introduce your document</value>
+  </data>
+  <data name="JSAGoingToStep673" xml:space="preserve">
+    <value>Attach additional documents to your JSA</value>
+  </data>
+  <data name="AideMemoire" xml:space="preserve">
+    <value>Checklist</value>
+  </data>
+  <data name="JSACopyInfos" xml:space="preserve">
+    <value>Take some time to check whether the informations in the table are corrects. Then, correct the header and add a taskname for this JSA.</value>
+  </data>
+  <data name="UnspecifiedSup" xml:space="preserve">
+    <value>Unspecified Supervisor</value>
+  </data>
+</root>

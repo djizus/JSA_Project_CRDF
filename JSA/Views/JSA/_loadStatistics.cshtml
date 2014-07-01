@@ -1,0 +1,78 @@
+﻿@model   List<List<Safe_Task_Analysis.Models.JSA_Attr>>
+<style type="text/css">
+    .tablesorter tbody td
+    {
+        background-color: #F7FFF2;
+        text-align: left;
+    }
+    
+    .tablesorter .header
+    {
+        background-image: url(@Url.Content("~/images/bg.png"));
+        background-position: 48% 9%;
+        background-repeat: repeat-x;
+        border-color: #CBE0AC;
+        font-family: "Trebuchet MS",sans-serif;
+        font-weight: bold;
+        padding-bottom: 10px;
+        text-align: left;
+    }
+
+    .tablesorter .headerSortUp
+    {
+        background-image: url(@Url.Content("~/images/asc.png"));
+        background-position: 44% 92%;
+        background-repeat: repeat-x;
+    }
+
+    .tablesorter .headerSortDown
+    {
+        background-image: url(@Url.Content("~/images/desc.png"));
+        background-position: 55% 87%;
+        background-repeat: repeat-x;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#jsa").tablesorter();
+    });
+
+    function redirecturl(choice) {
+        var s = '@Url.Content("~/JSA/Index?JSA_ID=")' + choice + "&lang=" + '@Resources.Global.GlobalCurrentLang';
+        location.href = s;
+    }
+</script>
+<table class="tablesorter" id="jsa" border="" cellpadding="2" cellspacing="1" style="overflow: hidden;
+    width: 100%; empty-cells: show; table-layout: fixed">
+    <thead>
+        <tr>
+            <th title="@Resources.Global.GlobalSort " class="header" width="15%">
+                <b>@Resources.Global.JSAIndexEnvironment </b>
+            </th>
+            <th title="@Resources.Global.GlobalSort Number" class="header"width="15%">
+                <b>Number </b>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            foreach (List<Safe_Task_Analysis.Models.JSA_Attr> t in Model)
+            {
+                if (t.Count != 0)
+                {
+                    if (i <= 9)
+                    {
+            @Html.Raw("<tr><td>" + t.Last().Region.NameEn + "</td>");
+                    }
+                    if (i > 9)
+                    {
+            @Html.Raw("<tr><td>" + t.Last().Branch.NameEn + "</td>");
+                    }
+            @Html.Raw("<td>" + t.Count() + "</td></tr>");
+                }
+                i = i + 1;
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,70 @@
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+ </head>
+<body style="background-color: #FFF">
+<table width="100%">
+	<tbody>
+		<tr>
+			<td width="25%">&nbsp;</td>
+			<td width="50%">
+			<div id="welcomepage">
+			<div class="core">
+			<div class="fip"><img
+				src="http://intranet.agr.gc.ca/res//clf2.2/images/sig-eng.gif"
+				width="372" height="22"
+				alt="Agriculture and Agri-Food Canada / Agriculture et Agroalimentaire Canada" />
+            </div>
+			<div style="height: 250px; background: url(http://intranet.agr.gc.ca/res//clf2.2/images/welcome_background.jpg) no-repeat; color: #FFF;">
+			    <div id="welcome_en">
+			        <div class="welcome_text">Job Safety Analysis (JSA)</div>
+			    </div>
+                <div id="welcome_fr">
+                    <div class="welcome_text">Analyse Sécuritaire de Tâches (AST)</div>
+                </div>
+			</div>
+			<div class="buttons"><!-- ENGLISH LINK BEGINS | DEBUT DU LIEN ANGLAIS -->
+			    <div class="lb">
+			        <div class="langbtn"><a
+				        href="@Url.Content("~/Home/Index2?lang=eng")">English</a>
+                    </div>
+			    </div>
+			<!-- ENGLISH LINK ENDS | FIN DU LIEN ANGLAIS --> <!-- FRENCH LINK BEGINS | DEBUT DU LIEN FRANCAIS -->
+			    <div class="lb">
+			        <div class="langbtn">
+                        <a
+				        href="@Url.Content("~/Home/Index2?lang=fra")"
+				        lang="fr">Français</a>
+                    </div>
+			    </div>
+			<!-- FRENCH LINK ENDS | FIN DU LIEN FRANCAIS -->
+            </div>
+			<div class="wm"><img
+			    src="http://intranet.agr.gc.ca/res//clf2.2/images/wmms.gif"
+				alt="Symbol of the Government of Canada | Symbole du gouvernement du Canada"
+				width="83" height="20" />
+            </div>
+ 
+			<br clear="all" />
+			<div class="imptext">
+			    <div>
+			        <div id="inlft"><a
+				        href="http://intranet.agr.gc.ca/intranet/display-afficher.do?id=1288036234895&amp;lang=eng"
+				        lang="en">Important Notices</a>
+                     </div>
+			        <div id="inrgt"><a
+				        href="http://intranet.agr.gc.ca/intranet/display-afficher.do?id=1288036234895&amp;lang=fra"
+				        lang="fr">Avis importants</a>
+                    </div>
+			    </div>
+			</div>
+			</div>
+			</div>
+			</td>
+			<td width="25%">&nbsp;</td>
+		</tr>
+	</tbody>
+</table>

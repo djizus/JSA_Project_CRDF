@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AST_DBModelStoreContainer" CdmEntityContainer="AST_DBEntities">
+    <EntitySetMapping Name="tblAssociatedRisks">
+      <EntityTypeMapping TypeName="AST_DBModel.tblAssociatedRisk">
+        <MappingFragment StoreEntitySet="tblAssociatedRisk">
+          <ScalarProperty Name="ID_Ass_Risk" ColumnName="ID_Ass_Risk" />
+          <ScalarProperty Name="Risk" ColumnName="Risk" />
+          <ScalarProperty Name="Task_ID" ColumnName="Task_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPrevMesures">
+      <EntityTypeMapping TypeName="AST_DBModel.tblPrevMesure">
+        <MappingFragment StoreEntitySet="tblPrevMesure">
+          <ScalarProperty Name="ID_Prev_Mesure" ColumnName="ID_Prev_Mesure" />
+          <ScalarProperty Name="Risk_ID" ColumnName="Risk_ID" />
+          <ScalarProperty Name="Pre_Mesure" ColumnName="Pre_Mesure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRegions">
+      <EntityTypeMapping TypeName="AST_DBModel.tblRegion">
+        <MappingFragment StoreEntitySet="tblRegion">
+          <ScalarProperty Name="ID_Region" ColumnName="ID_Region" />
+          <ScalarProperty Name="NameFR" ColumnName="NameFR" />
+          <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRisks">
+      <EntityTypeMapping TypeName="AST_DBModel.tblRisk">
+        <MappingFragment StoreEntitySet="tblRisk">
+          <ScalarProperty Name="ID_Risk" ColumnName="ID_Risk" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="NameFR" ColumnName="NameFR" />
+          <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRiskCategories">
+      <EntityTypeMapping TypeName="AST_DBModel.tblRiskCategory">
+        <MappingFragment StoreEntitySet="tblRiskCategory">
+          <ScalarProperty Name="ID_RiskCat" ColumnName="ID_RiskCat" />
+          <ScalarProperty Name="NameFR" ColumnName="NameFR" />
+          <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSites">
+      <EntityTypeMapping TypeName="AST_DBModel.tblSite">
+        <MappingFragment StoreEntitySet="tblSite">
+          <ScalarProperty Name="ID_Site" ColumnName="ID_Site" />
+          <ScalarProperty Name="SiteNameFR" ColumnName="SiteNameFR" />
+          <ScalarProperty Name="SaiteNameEN" ColumnName="SaiteNameEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSTAs">
+      <EntityTypeMapping TypeName="AST_DBModel.tblSTA">
+        <MappingFragment StoreEntitySet="tblSTA">
+          <ScalarProperty Name="ID_STA" ColumnName="ID_STA" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="WorkEnv" ColumnName="WorkEnv" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Helmet" ColumnName="Helmet" />
+          <ScalarProperty Name="Goggles" ColumnName="Goggles" />
+          <ScalarProperty Name="HearPlugs" ColumnName="HearPlugs" />
+          <ScalarProperty Name="Gloves" ColumnName="Gloves" />
+          <ScalarProperty Name="Boots" ColumnName="Boots" />
+          <ScalarProperty Name="BreathingMask" ColumnName="BreathingMask" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSubnets">
+      <EntityTypeMapping TypeName="AST_DBModel.tblSubnet">
+        <MappingFragment StoreEntitySet="tblSubnet">
+          <ScalarProperty Name="ID_SubNET" ColumnName="ID_SubNET" />
+          <ScalarProperty Name="Subnet" ColumnName="Subnet" />
+          <ScalarProperty Name="Site_ID" ColumnName="Site_ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTasks">
+      <EntityTypeMapping TypeName="AST_DBModel.tblTask">
+        <MappingFragment StoreEntitySet="tblTask">
+          <ScalarProperty Name="ID_Task" ColumnName="ID_Task" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="STA_ID" ColumnName="STA_ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTeams">
+      <EntityTypeMapping TypeName="AST_DBModel.tblTeam">
+        <MappingFragment StoreEntitySet="tblTeam">
+          <ScalarProperty Name="ID_Team" ColumnName="ID_Team" />
+          <ScalarProperty Name="Site_ID" ColumnName="Site_ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblWorkEnvs">
+      <EntityTypeMapping TypeName="AST_DBModel.tblWorkEnv">
+        <MappingFragment StoreEntitySet="tblWorkEnv">
+          <ScalarProperty Name="ID_WorkEnv" ColumnName="ID_WorkEnv" />
+          <ScalarProperty Name="NameFR" ColumnName="NameFR" />
+          <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tblSite_WorkEnv" TypeName="AST_DBModel.tblSite_WorkEnv" StoreEntitySet="tblSite_WorkEnv">
+      <EndProperty Name="tblSite">
+        <ScalarProperty Name="ID_Site" ColumnName="Site_ID" />
+      </EndProperty>
+      <EndProperty Name="tblWorkEnv">
+        <ScalarProperty Name="ID_WorkEnv" ColumnName="WorkEnv_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

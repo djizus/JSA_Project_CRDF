@@ -1,0 +1,13 @@
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\bin\Safe Task Analysis.dll
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\bin\Safe Task Analysis.pdb
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\bin\FR\Safe Task Analysis.resources.dll
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\bin\System.Data.Linq.dll
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\ResolveAssemblyReference.cache
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\Safe_Task_Analysis.Resources.Global.resources
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\Safe_Task_Analysis.Properties.Resources.resources
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\Safe_Task_Analysis.Resources.Global.FR.resources
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\GenerateResource.read.1.tlog
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\GenerateResource.write.1.tlog
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\FR\Safe Task Analysis.resources.dll
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\Safe Task Analysis.dll
+C:\Users\MehrJc\Documents\Visual Studio 2010\Projects\Safe Task Analysis\Safe Task Analysis\obj\Release\Safe Task Analysis.pdb

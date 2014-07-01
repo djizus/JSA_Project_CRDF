@@ -1,0 +1,191 @@
+﻿@model Safe_Task_Analysis.Models.JSA
+@{if (Model == null){
+    <h1>
+         @Resources.Global.JSAHeader1
+    </h1>
+    <br />
+  @Resources.Global.JSATipTaskName
+    <br />
+    <br />}
+}
+<table cellspacing="0" cellpadding="5" border="1">
+    <tbody>
+        <tr>
+            <td width="102" style="text-align: center">
+                <b># </b><b>
+                    @{if (Model != null)
+                      {
+                        @Html.Hidden("Task_ID", Model.IDJSA.ToString(), new { id = "Task_ID" });
+                        <text>@Model.IDJSA.ToString()</text>
+                      }
+                      else
+                      {
+                        <text>---</text>
+                      }   
+                    }
+                </b>
+            </td>
+            <td width="1000" style="text-align: left">
+                <b>&nbsp;&nbsp;@Resources.Global.JSAIndexTaskToAnalize : </b>
+                @{
+                    if (Model != null)
+                    {
+                    @Html.TextBox("Task_Name", Model.JSA_Attr.Last().TaskName, new { id = "Task_Name", disabled = "true" })
+                    }
+                    else
+                    {
+                    @Html.TextBox("Task_Name", "", new { id = "Task_Name" })
+                    }
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+@{if (Model == null)
+  {<h1>
+        @Resources.Global.JSAHeader2
+    </h1>
+    <br />
+  @Resources.Global.JSATipHeader
+    <br />
+    <br />
+  }
+}
+<div id="bordertable" style="border-width: 1px; border-style: solid; border-color: Gray;
+    padding: 3px 3px 3px 3px">
+    <table>
+        <tr>
+            <td>
+                <b>@Resources.Global.JSAIndexBranch : </b>
+            </td>
+            <td>
+                @{
+                    if (Model != null)
+                    {
+                        Html.RenderAction("getBranch", new { lang = @Resources.Global.GlobalCurrentLang, current = Model.JSA_Attr.Last().BranchID, disabled = "true" });
+                    }
+                    else
+                    {
+                        Html.RenderAction("getBranch", new { lang = @Resources.Global.GlobalCurrentLang, current = 0 });
+                    }
+                }
+            </td>
+            <td>
+                <b>&nbsp;&nbsp;@Resources.Global.GlobalAuthor : </b>
+            </td>
+            <td>
+                @(Model == null ? Html.GetUserName() : Model.JSA_Attr.Last().CreatedBy)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>@Resources.Global.JSAIndexRegion : </b>
+            </td>
+            <td>
+                <div id="RegionDiv">
+                    @{
+                        if (Model != null)
+                        {
+                            Html.RenderAction("getRegions", new { lang = @Resources.Global.GlobalCurrentLang, current = @Model.JSA_Attr.Last().RegionID, disabled = "true" });
+                        }
+                        else
+                        {
+                            Html.RenderAction("getRegions", new { lang = @Resources.Global.GlobalCurrentLang, current = 0 });
+                        }   
+                    }
+                </div>
+            </td>
+            <td>
+                <b>&nbsp;&nbsp;@Resources.Global.GlobalCreateDate : </b>
+            </td>
+            <td>
+                @(Model == null ? DateTime.Now.ToShortDateString() : Model.JSA_Attr.Last().CreationDate.ToShortDateString())
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>@Resources.Global.JSAIndexEnvironment : </b>
+            </td>
+            <td>
+                <div id="WorkEnvDiv">
+                    @{
+                        if (Model != null)
+                        {
+                            Html.RenderAction("getWorkEnv", new { lang = @Resources.Global.GlobalCurrentLang, current = Model.JSA_Attr.Last().WorkEnvID, disabled = "true" });
+                        }
+                        else
+                        {
+                            Html.RenderAction("getWorkEnv", new { lang = @Resources.Global.GlobalCurrentLang, current = 0 });
+                        }   
+                    }
+                </div>
+            </td>
+            <td>
+                <b>&nbsp;&nbsp;@Resources.Global.GlobalModAuthor : </b>
+            </td>
+            <td>
+                @(Model == null ? Html.GetUserName() : Model.JSA_Attr.Last().ModifiedBy)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>@Resources.Global.JSAIndexOrganisation : </b>
+            </td>
+            <td>
+                <div id="OrganisationDiv">
+                    @{
+                        if (Model != null)
+                        {
+                            Html.RenderAction("getOrganisationByRegion", new { RegionID = Model.JSA_Attr.Last().RegionID, lang = @Resources.Global.GlobalCurrentLang, current = Model.JSA_Attr.Last().OrganisationID, disabled = "true" });
+                        }
+                        else
+                        {
+                            Html.RenderAction("getOrganisationByRegion", new { RegionID = 0, lang = @Resources.Global.GlobalCurrentLang, current = 0, disabled = "true" });
+                        }   
+                    }
+                </div>
+            </td>
+            <td>
+                <b>&nbsp;&nbsp;@Resources.Global.GlobalModDate : </b>
+            </td>
+            <td>
+                @(Model == null ? DateTime.Now.ToShortDateString() : Model.JSA_Attr.Last().ModifiedDate.ToShortDateString())
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>@Resources.Global.JSAIndexSupervisor : </b>
+            </td>
+            <td>
+                <div id="SupervisorDiv">
+                    @{
+                        if (Model != null)
+                        {
+                            Html.RenderAction("getSupervisorByOrganisation", new { OrganisationID = @Model.JSA_Attr.Last().OrganisationID, lang = @Resources.Global.GlobalCurrentLang, current = @Model.JSA_Attr.Last().SupervisorID, disabled = "true" });
+                        }
+                        else
+                        {
+                            Html.RenderAction("getSupervisorByOrganisation", new { OrganisationID = 0, lang = @Resources.Global.GlobalCurrentLang, current = 0, disabled = "true" });
+                        }   
+                    }
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div style="text-align: right;">
+        <span id="HeaderWaiting" style="display: none">
+            <img src="@Url.Content("~/images/ajax-loader.gif")" alt="loading" /></span>
+        <a onclick="return EditJSAHeader()" style="@((Model != null) ? Html.Raw(String.Empty) : Html.Raw("display : none"))" id="EditJSAHeader" href="#">@Resources.Global.GlobalEdit</a>
+        <a onclick="return SaveJSAHeader()" style="@((Model == null) ? Html.Raw(String.Empty) : Html.Raw("display : none"))" id="SaveJSAHeader" href="#">@Resources.Global.GlobalSave</a>
+        <br />
+    </div>
+    <div id="HeaderErr" style="color: Red; font-weight: bold">
+        @foreach (var e in ViewBag.Errors)
+        {
+            <text>@e
+            <br /></text>
+        }
+    </div>
+</div>

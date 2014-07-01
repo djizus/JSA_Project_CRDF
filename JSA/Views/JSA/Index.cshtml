@@ -1,0 +1,1189 @@
+﻿@model Safe_Task_Analysis.Models.JSA
+@{ 
+    /*
+     * This page is the core of the application : it's used for displaying or creating the JSAs
+     * I hope you understand AJAX, because there's a lot in my JS
+     * A part of the JavaScipt used in this page is contained in /Scripts/JSciptPerso.js
+    */
+
+    ViewBag.Title = Resources.Global.JSAIndexTitle;
+    Layout = "~/Views/Shared/_AgriLookLayout.cshtml";
+    ViewBag.CurrentURL = getCurrentURL();
+    ViewBag.ModificationDate = "2012-04-13";
+}
+@using Safe_Task_Analysis.Helpers
+@section CssStyle{
+    <style type="text/css">
+        select
+        {
+            width:25em;
+        }
+    
+        #Task_Name
+        {
+            width:40em;
+        }
+        .TasksButtons {
+            display:@(getTasksButtonsDisplayStatus("inline"));
+            
+        }
+        .TasksButtonsBlock {
+            display:@(getTasksButtonsDisplayStatus("inline-block"));
+        }
+        .MoveUpFirst
+        {
+            display: none;
+        }
+        .MoveDownLast
+        {
+            display: none;
+        }
+        .MoveUpDown
+        {
+            display:@(getUpDownDisplayStatus());
+        }
+        .table1 {
+            border-color: #93CE37 #93CE37 #9ED929;
+            border-style: solid;
+        }
+
+        .table1 tbody td {
+            background-color: #F7FFF2;    
+            padding: 5px;
+        }
+
+        .table1 thead td {
+            background-image: url(@Url.Content("~/images/degradevert.png"));
+            background-repeat: repeat-x;
+            border-color: #CBE0AC;
+            font-family: "Trebuchet MS",sans-serif;
+            font-weight: bold;
+            padding-bottom: 15px;
+            vertical-align:middle;
+        }
+    </style>
+}
+@section metadata{
+}
+@section BrCrumb{
+    <li><a rel="up" href="@Url.Content("~/Home/Index2?lang=" + @Resources.Global.GlobalCurrentLang)" title="@Resources.Global.GlobalHome">@Resources.Global.GlobalHome</a>&#160;&#62;</li>
+    <li><a rel="up" href="@Url.Content("~/JSA/Index?lang=" + @Resources.Global.GlobalCurrentLang)" title="@Resources.Global.JSAIndexNewJSA">@Resources.Global.JSAIndexNewJSA</a>&#160;&#62;</li>
+}
+@section JavaScript{
+    <script type="text/javascript">
+        $.fn.loadWithoutCache = function () {
+            var elem = $(this);
+            var args = arguments[1];
+            var func = arguments[2];
+            if (args == undefined)
+                args = {};
+
+            $.ajax({
+                url: arguments[0],
+                cache: false,
+                data: args,
+                dataType: "html",
+                success: function (data, textStatus, XMLHttpRequest) {
+                    elem.html(data);
+                    if (func != undefined) {
+                        func(data, textStatus, XMLHttpRequest);
+                    }
+                }
+            });
+            return elem;
+        }
+
+        //------------------------------//
+        //Defining where the popups pops//
+        //------------------------------//
+        $(document).ready(function () {
+            var args = { autoOpen: false,
+                modal: true,
+                width: 500,
+                height: 400,
+                position: ['center', 'center'],
+                resizable: false,
+                title: '@Resources.Global.JSAIndexAddTask'
+            };
+            $("#PopupNewTaskName").dialog(args);
+            args = { autoOpen: false,
+                modal: true,
+                width: 500,
+                height: 400,
+                position: ['center', 'center'],
+                resizable: false,
+                title: '@Resources.Global.JSAIndexAddRisk'
+            };
+            $("#PopupNewRisk").dialog(args);
+            args = { autoOpen: false,
+                modal: true,
+                width: 500,
+                height: 400,
+                position: ['center', 'center'],
+                resizable: false,
+                title: '@Resources.Global.JSAIndexPreventiveMesures'
+            };
+            $("#PopupNewPrevMes").dialog(args);
+            args = { autoOpen: false,
+                modal: true,
+                width: 500,
+                height: 500,
+                position: ['center', 'center'],
+                resizable: false,
+                title: '@Resources.Global.JSAIndexSafeTyEquip'
+            };
+            $("#PopupSafetyEquip").dialog(args);
+            args = { autoOpen: false,
+                modal: true,
+                width: 300,
+                height: 200,
+                position: ['center', 'center'],
+                resizable: false,
+                title: '@Resources.Global.GlobalDelete'
+            };
+            $("#PopupDelete").dialog(args);
+            args = { autoOpen: false,
+                modal: true,
+                width: 400,
+                height: 500,
+                position: ['center', 'center'],
+                resizable: false,
+                title: 'Infos'
+            };
+            $("#PopupInfos").dialog(args);
+            args = { autoOpen: false,
+                modal: true,
+                width: 300,
+                height: 300,
+                position: ['center', 'center'],
+                resizable: false,
+                title: 'Infos'
+            };
+            $("#PopupCopy").dialog(args);
+        });
+
+        function UpdateContent(ref, div_name, page, param_name) {
+            var d = document.getElementById(div_name);
+            if (ref.selectedIndex > 0) {
+                d.innerHTML = "";
+                if (param_name != null)
+                    $("#" + div_name).loadWithoutCache(page + "?" + param_name + "=" + ref.value + "&lang=@Resources.Global.GlobalCurrentLang");
+                else
+                    $("#" + div_name).loadWithoutCache(page);
+            }
+            else
+                DisableFollowingCbo(ref);
+        }
+
+        //Add a loading effect
+        function loading(textbutton) {
+            var s = '@Url.Content("~/images/ajax-loader.gif")';
+            $('.ui-dialog-buttonpane')
+                    .find('button:contains(' + textbutton + ')')
+                    .removeClass('ui-button-text-only')
+                    .addClass('ui-button-text-icon')
+                    .prepend('<img src="' + s + '" alt="loading" />');
+        }
+
+        function popdelete(affstring) {
+            var s1 = unescape("@Resources.Global.JSAIndexSureDelete1");
+            var s2 = unescape("@Resources.Global.JSAIndexSureDelete4");
+            $("#PopupDeleteText").replaceWith("<div id='PopupDeleteText'>" + s1 + " '" + affstring + "' " + s2 + "</div>");
+        }
+
+        //Function for deleting the whole JSA
+        function DeleteJSA(JSAIDlocal) {
+            var str = "JSA " + JSAIDlocal
+            popdelete(str);
+            var args = [
+                { text: "@Resources.Global.GlobalDelete",
+                    click: function () {
+                        loading("@Resources.Global.GlobalDelete");
+                        var args = { JSA_ID: JSAIDlocal };
+                        $.ajax({
+                            url: "deleteJSA",
+                            data: args,
+                            cache: false,
+                            success: function (html) {
+                                window.location = '@Url.Content("~/JSA/Search")';
+                                $("#PopupDelete").dialog("close");
+                            }
+                        });
+                    }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupDelete').dialog('close'); }
+                }];
+            $("#PopupDelete").dialog("option", "buttons", args);
+            $("#PopupDelete").dialog('open');
+            return false;
+        }
+
+        //-------------------------------------//
+        //              Header                 //
+        //-------------------------------- ----//
+        function SaveJSAHeader() {
+            var errors = 0;
+            var error_msg = "";
+            var d = null;
+            var Organisation = 0;
+            var branchid = 0;
+            var region = 0;
+            var workenv = 0;
+            var Supervisor = 0;
+            var name = "";
+            var taskid = 0;
+            d = document.getElementById("Task_ID");
+            if (d != null) {
+                if (d.value.length > 0) {
+                    taskid = d.value;
+                }
+                else {
+                    taskid = 0;
+                }
+            }
+            d = document.getElementById("SelectRegion");
+            if (d != null) {
+                if (d.value > 0) {
+                    region = d.value;
+                }
+                else {
+                    errors += 1;
+                    error_msg += "@Resources.Global.JSAIndexChooseRegion<br/>";
+                }
+            }
+            d = document.getElementById("Organisation");
+            if (d != null) {
+                if (d.value > 0) {
+                    Organisation = d.value;
+                }
+                else {
+                    errors += 1;
+                    error_msg += "@Resources.Global.JSAIndexChooseOrganisation<br/>";
+                }
+            }
+            d = document.getElementById("WorkEnv");
+            if (d != null) {
+                if (d.value > 0) {
+                    workenv = d.value;
+                }
+                else {
+                    errors += 1;
+                    error_msg += "@Resources.Global.JSAIndexChooseEnvironment<br/>";
+                }
+            }
+            d = document.getElementById("Supervisor");
+            if (d != null) {
+                if (d.value > 0) {
+                    Supervisor = d.value;
+                }
+                else {
+                    errors += 1;
+                    error_msg += "@Resources.Global.JSAIndexChooseSupervisor<br/>";
+                }
+            }
+            d = document.getElementById("Task_Name");
+            if (d != null) {
+                if (d.value.length > 0) {
+                    name = d.value;
+                }
+                else {
+                    errors += 1;
+                    error_msg += "@Resources.Global.JSAIndexChooseTaskName<br/>";
+                }
+            }
+            d = document.getElementById("BranchEnv");
+            if (d != null) {
+                if (d.value > 0) {
+                    branchid = d.value;
+                }
+                else {
+                    errors += 1;
+                    error_msg += "@Resources.Global.JSAIndexChooseBranch<br/>";
+                }
+            }
+            if (errors > 0) {
+                document.getElementById("HeaderErr").innerHTML = error_msg;
+            }
+            else {
+                var args = { BranchID: branchid,
+                    RegionID: region,
+                    OrganisationID: Organisation,
+                    EnvirID: workenv,
+                    SupervisorID: Supervisor,
+                    TaskName: name,
+                    EditorName: "@Html.GetUserName()",
+                    lang: "@Resources.Global.GlobalCurrentLang",
+                    TaskID: parseInt(taskid)
+                };
+                d = document.getElementById("HeaderWaiting");
+                d.style.display = "inline";
+                $("#JSAHeader").loadWithoutCache("saveJSAHeader", args, SaveJSAHeaderResponse);
+            }
+            return false;
+        }
+
+        //
+        function SaveJSAHeaderResponse(response, status, xhr) {
+            var d = document.getElementById("HeaderWaiting");
+            d.style.display = "none";
+            if (document.getElementById("Task_ID") != null) {
+                var s = '@Url.Content("~/JSA/Index?JSA_ID=")' + document.getElementById("Task_ID").value + "&lang=" + '@Resources.Global.GlobalCurrentLang';
+                location.href = s;
+            }
+            return false;
+        }
+
+        //-------------------------------------//
+        //           Table ADD                 //
+        //-------------------------------- ----//
+        function AddRow() {
+            t = document.getElementById("NewName");
+            t.value = "";
+            var args = [
+                { text: "@Resources.Global.GlobalSave",
+                    click: function () { SaveTaskName(); }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupNewTaskName').dialog('close'); }
+                }];
+            $("#PopupNewTaskName").dialog("option", "buttons", args);
+            $("#PopupNewTaskName").dialog('open');
+            t.focus();
+            document.getElementById("aFinishTasks").style.display = "block";
+            return false;
+        }
+
+        function AddRisk(TaskID) {
+            document.getElementById("CurrentTaskID").value = TaskID;
+            t = document.getElementById("NewRisk");
+            t.value = "";
+            var args = [
+                { text: "@Resources.Global.GlobalSave",
+                    click: function () { SavePotentialRisk(); }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupNewRisk').dialog("close"); }
+                }
+            ];
+            $("#PopupNewRisk").dialog("option", "buttons", args);
+            $("#PopupNewRisk").dialog('open');
+            t.focus();
+            return false;
+        }
+
+        function AddPrevMes(AssRiskID) {
+            document.getElementById("CurrentAssRiskID").value = AssRiskID;
+            t = document.getElementById("NewPrevMes");
+            t.value = "";
+            var args = [
+                { text: "@Resources.Global.GlobalSave",
+                    click: function () { SavePrevMes(); }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupNewPrevMes').dialog('close'); }
+                }];
+            $("#PopupNewPrevMes").dialog("option", "buttons", args);
+            $("#PopupNewPrevMes").dialog('open');
+            t.focus();
+            return false;
+        }
+
+        //-------------------------------------//
+        //        Table   SAVE                 //
+        //-------------------------------- ----//
+        function SaveTaskName() {
+            var desc = document.getElementById("NewName").value;
+            if (desc.length > 0) {
+                loading("@Resources.Global.GlobalSave");
+                var jsa_id = document.getElementById("Task_ID").value;
+                var TaskCnt = parseInt(document.getElementById("TaskCnt").value);
+                var args = { JSA_ID: jsa_id,
+                    TaskDesc: desc,
+                    OrderNo: TaskCnt,
+                    lang: "@Resources.Global.GlobalCurrentLang"
+                };
+                $.ajax({
+                    url: "saveJSATask",
+                    data: args,
+                    cache: false,
+                    success: function (html) {
+                        document.getElementById("aff").innerHTML = "" + html;
+                        $("#PopupNewTaskName").dialog('close');
+                        if (TaskCnt > 0) {
+                            document.getElementById("MoveDown" + TaskCnt).setAttribute("class", "MoveUpDown");
+                            document.getElementById("MoveDown" + TaskCnt).setAttribute("className", "MoveUpDown");
+                        }
+                        document.getElementById("TaskCnt").value = TaskCnt + 1;
+                    }
+                });
+            }
+            return false;
+        }
+
+        function SavePotentialRisk() {
+            var desc = document.getElementById("NewRisk").value;
+            if (desc.length > 0) {
+                loading("@Resources.Global.GlobalSave");
+                var CurrentTask = document.getElementById("CurrentTaskID").value;
+                var args = { TaskID: CurrentTask, RiskDesc: desc, lang: "@Resources.Global.GlobalCurrentLang" };
+                $.ajax({
+                    url: "saveJSARisk",
+                    data: args,
+                    cache: false,
+                    success: function (html) {
+                        document.getElementById("aff").innerHTML = "" + html;
+                        $("#PopupNewRisk").dialog('close');
+                    }
+                });
+            }
+            return false;
+        }
+
+        function SavePrevMes() {
+            var desc = document.getElementById("NewPrevMes").value;
+            if (desc.length > 0) {
+                loading("@Resources.Global.GlobalSave");
+                var CurrentAssRiskID = document.getElementById("CurrentAssRiskID").value;
+                var args = { AssRiskID: CurrentAssRiskID, PrevMesDesc: desc, lang: "@Resources.Global.GlobalCurrentLang" };
+                $.ajax({
+                    url: "saveJSAPrevMes",
+                    data: args,
+                    cache: false,
+                    success: function (html) {
+                        document.getElementById("aff").innerHTML = "" + html;
+                        $("#PopupNewPrevMes").dialog('close');
+                    }
+                });
+
+            }
+            return false;
+        }
+
+        //-------------------------------------//
+        //       Table  -   EDIT               //
+        //-------------------------------- ----//
+        function EditTask(TaskID) {
+            document.getElementById("CurrentTaskID").value = TaskID;
+            document.getElementById("NewName").value = document.getElementById("hidden_desc_" + TaskID).value;
+            var args = [
+                { text: "@Resources.Global.GlobalUpdate",
+                    click: function () { UpdateTaskName(); }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupNewTaskName').dialog('close'); }
+                }];
+            $("#PopupNewTaskName").dialog("option", "buttons", args);
+            $("#PopupNewTaskName").dialog('open');
+            document.getElementById("NewName").focus();
+            return false;
+        }
+
+        function EditRisk(AssRiskID) {
+            document.getElementById("CurrentAssRiskID").value = AssRiskID;
+            document.getElementById("NewRisk").value = document.getElementById("hidden_risk_text_" + AssRiskID).value;
+            var args = [
+                { text: "@Resources.Global.GlobalUpdate",
+                    click: function () { UpdatePotentialRisk(); }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupNewRisk').dialog('close'); }
+                }];
+            $("#PopupNewRisk").dialog("option", "buttons", args);
+            $("#PopupNewRisk").dialog('open');
+            document.getElementById("NewRisk").focus();
+            return false;
+        }
+
+        function EditPrevMes(PrevMesID) {
+            document.getElementById("CurrentPrevMesID").value = PrevMesID;
+            document.getElementById("NewPrevMes").value = document.getElementById("hidden_prevmes_" + PrevMesID).value;
+            var args = [
+                { text: "@Resources.Global.GlobalUpdate",
+                    click: function () { UpdatePrevMes(PrevMesID); }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupNewPrevMes').dialog('close'); }
+                }];
+            $("#PopupNewPrevMes").dialog("option", "buttons", args);
+            $("#PopupNewPrevMes").dialog('open');
+            document.getElementById("NewPrevMes").focus();
+            return false;
+        }
+
+
+        //-------------------------------------//
+        //       Table  -   DELETE             //
+        //-------------------------------- ----//
+        function DeleteTask(TaskID) {
+            var str = document.getElementById("hidden_desc_" + TaskID).value;
+            popdelete(str);
+            var args = [
+                { text: "@Resources.Global.GlobalDelete",
+                    click: function () {
+                        loading("@Resources.Global.GlobalDelete");
+                        var args = { TaskID: TaskID, lang: "@Resources.Global.GlobalCurrentLang" };
+                        $.ajax({
+                            url: "deleteJSATask",
+                            data: args,
+                            cache: false,
+                            success: function (html) {
+                                var CurrentOrder = document.getElementById("hidden_UpDownB_" + TaskID).value;
+                                var tempCnt = document.getElementById("TaskCnt").value;
+                                var id;
+                                for (var i = CurrentOrder; i < tempCnt; ++i) {
+                                    id = document.getElementById("hidden_UpDown_" + i).value;
+                                    document.getElementById("hidden_UpDownB_" + id).value = document.getElementById("hidden_UpDownB_" + id).value - 1;
+                                }
+                                document.getElementById("TaskCnt").value = tempCnt - 1;
+                                document.getElementById("aff").innerHTML = "" + html;
+                                $("#PopupDelete").dialog("close");
+
+                            }
+                        });
+                    }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupDelete').dialog('close'); }
+                }];
+            $("#PopupDelete").dialog("option", "buttons", args);
+            $("#PopupDelete").dialog('open');
+            return false;
+        }
+
+        function DeleteRisk(AssRiskID) {
+            var str = document.getElementById("hidden_risk_text_" + AssRiskID).value
+            popdelete(str);
+            var args = [
+                { text: "@Resources.Global.GlobalDelete",
+                    click: function () {
+                        loading("@Resources.Global.GlobalDelete");
+                        var args = { AssRiskID: AssRiskID, lang: "@Resources.Global.GlobalCurrentLang" };
+                        $.ajax({
+                            url: "deleteJSARisk",
+                            data: args,
+                            cache: false,
+                            success: function (html) {
+                                document.getElementById("aff").innerHTML = "" + html;
+                                $("#PopupDelete").dialog("close");
+                            }
+                        });
+                    }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupDelete').dialog('close'); }
+                }];
+            $("#PopupDelete").dialog("option", "buttons", args);
+            $("#PopupDelete").dialog('open');
+            return false;
+        }
+
+        //
+        function DeletePrevMes(PrevMesID) {
+            var str = document.getElementById("hidden_prevmes_" + PrevMesID).value
+            popdelete(str);
+            var args = [
+                { text: "@Resources.Global.GlobalDelete",
+                    click: function () {
+                        loading("@Resources.Global.GlobalDelete");
+                        var args = { PrevMeskID: PrevMesID, lang: "@Resources.Global.GlobalCurrentLang" };
+                        $.ajax({
+                            url: "deleteJSAPrevMes",
+                            data: args,
+                            cache: false,
+                            success: function (html) {
+                                document.getElementById("aff").innerHTML = "" + html;
+                                $("#PopupDelete").dialog("close");
+                            }
+                        });
+                    }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupDelete').dialog('close'); }
+                }];
+            $("#PopupDelete").dialog("option", "buttons", args);
+            $("#PopupDelete").dialog('open');
+            return false;
+        }
+
+        //-------------------------------------//
+        //        Table  UPDATE                //
+        //-------------------------------- ----//
+        function UpdateTaskName() {
+            var desc = document.getElementById("NewName").value;
+            if (desc.length > 0) {
+                loading("@Resources.Global.GlobalUpdate");
+                var TaskID = document.getElementById("CurrentTaskID").value
+                var args = { TaskID: TaskID, TaskDesc: desc, lang: "@Resources.Global.GlobalCurrentLang" };
+                $.ajax({
+                    url: "updateJSATask",
+                    data: args,
+                    cache: false,
+                    success: function (html) {
+                        document.getElementById("aff").innerHTML = "" + html;
+                        $("#PopupNewTaskName").dialog('close');
+                    }
+                });
+            }
+            return false;
+        }
+
+        function UpdatePotentialRisk() {
+            var SelectedRiskDesc = document.getElementById("NewRisk").value;
+            loading("@Resources.Global.GlobalUpdate");
+            var RiskID = document.getElementById("CurrentAssRiskID").value;
+            var args = { AssRiskID: RiskID, RiskDesc: SelectedRiskDesc, lang: "@Resources.Global.GlobalCurrentLang" };
+            $.ajax({
+                url: "updateJSARisk",
+                data: args,
+                cache: false,
+                success: function (html) {
+                    document.getElementById("aff").innerHTML = "" + html;
+                    $("#PopupNewRisk").dialog('close');
+                }
+            });
+            return false;
+        }
+
+        function UpdatePrevMes(PrevMesID) {
+            var desc = document.getElementById("NewPrevMes").value;
+            if (desc.length > 0) {
+                loading("@Resources.Global.GlobalUpdate");
+                var CurrentPrevMesID = document.getElementById("CurrentPrevMesID").value;
+                var args = { PrevMesID: CurrentPrevMesID, PrevMesDesc: desc, lang: "@Resources.Global.GlobalCurrentLang" };
+                $.ajax({
+                    url: "updateJSAPrevMes",
+                    data: args,
+                    cache: false,
+                    success: function (html) {
+                        document.getElementById("aff").innerHTML = "" + html;
+                        $("#PopupNewPrevMes").dialog('close');
+                    }
+                });
+            }
+            return false;
+        }
+
+        //-------------------------------------//
+        //         SAFETY EQUIP                //
+        //-------------------------------- ----//
+        function SaveSafetyEquip() {
+            var JSA_ID = document.getElementById("Task_ID").value;
+            var helmet = document.getElementById("Helmet").checked;
+            var goggles = document.getElementById("Goggles").checked;
+            var hearplugs = document.getElementById("HearPlugs").checked;
+            var gloves = document.getElementById("Gloves").checked;
+            var boots = document.getElementById("Boots").checked;
+            var breahtingmask = document.getElementById("BreathingMask").checked;
+            var blouse = document.getElementById("blouse").checked;
+            var face = document.getElementById("face").checked;
+            var headcover = document.getElementById("headcover").checked;
+            var item = document.getElementById("item").checked;
+            if ($('.ui-dialog-buttonpane').find('button:contains("@Resources.Global.GlobalSave")').length > 0)
+                loading("@Resources.Global.GlobalSave");
+            if ($('.ui-dialog-buttonpane').find('button:contains("@Resources.Global.GlobalUpdate")').length > 0)
+                loading("@Resources.Global.GlobalUpdate");
+            var args = { JSA_ID: parseInt(JSA_ID), Helmet: helmet, Goggles: goggles, HearPlugs: hearplugs, Gloves: gloves, Boots: boots, BreathingMask: breahtingmask, Blouse: blouse, Face: face, Headcover: headcover, Item: item, lang: "@Resources.Global.GlobalCurrentLang" };
+            $.ajax({ url: "saveJSASafetyEquip",
+                data: args,
+                cache: false,
+                success: function (html) {
+                    document.getElementById('SafetyDev').style.display = "block";
+                    document.getElementById('HelmetPic').style.display = helmet ? "inline" : "none";
+                    document.getElementById('GogglePic').style.display = goggles ? "inline" : "none";
+                    document.getElementById('HearPlugsPic').style.display = hearplugs ? "inline" : "none";
+                    document.getElementById('GlovesPic').style.display = gloves ? "inline" : "none";
+                    document.getElementById('BootsPic').style.display = boots ? "inline" : "none";
+                    document.getElementById('BreathingMaskPic').style.display = breahtingmask ? "inline" : "none";
+                    document.getElementById('blousePic').style.display = blouse ? "inline" : "none";
+                    document.getElementById('facePic').style.display = face ? "inline" : "none";
+                    document.getElementById('headcoverPic').style.display = headcover ? "inline" : "none";
+                    document.getElementById('itemPic').style.display = item ? "inline" : "none";
+                    $("#PopupSafetyEquip").dialog('close');
+                    if (parseInt(document.getElementById("CurrentStage").value) == 2) {
+                        document.getElementById("CurrentStage").value = 3;
+                    }
+                    ToggleEditSave("safety", false);
+                }
+            });
+            return false;
+        }
+
+        function EditSafetyEquip() {
+            document.getElementById("Helmet").checked = (document.getElementById('HelmetPic').style.display == "inline");
+            document.getElementById("Goggles").checked = (document.getElementById('GogglePic').style.display == "inline");
+            document.getElementById("HearPlugs").checked = (document.getElementById('HearPlugsPic').style.display == "inline");
+            document.getElementById("Gloves").checked = (document.getElementById('GlovesPic').style.display == "inline");
+            document.getElementById("Boots").checked = (document.getElementById('BootsPic').style.display == "inline");
+            document.getElementById("BreathingMask").checked = (document.getElementById('BreathingMaskPic').style.display == "inline");
+            document.getElementById("blouse").checked = (document.getElementById('blousePic').style.display == "inline");
+            document.getElementById("face").checked = (document.getElementById('facePic').style.display == "inline");
+            document.getElementById("headcover").checked = (document.getElementById('headcoverPic').style.display == "inline");
+            document.getElementById("item").checked = (document.getElementById('itemPic').style.display == "inline");
+            var args = [
+                { text: "@Resources.Global.GlobalUpdate",
+                    click: function () { SaveSafetyEquip(); }
+                },
+                { text: "@Resources.Global.GlobalCancel",
+                    click: function () { $('#PopupSafetyEquip').dialog('close'); }
+                }];
+            $("#PopupSafetyEquip").dialog("option", "buttons", args);
+            $("#PopupSafetyEquip").dialog('open');
+            return false;
+        }
+
+        //
+        function FinishTasks() {
+            var jsa_id = document.getElementById("Task_ID").value;
+            if (parseInt(document.getElementById("TaskCnt").value) > 0) {
+                document.getElementById("aFinishTasks").setAttribute("onclick", "return SaveTasks()");
+                var args = { JSA_ID: jsa_id, stage: 3 };
+                $.ajax({
+                    url: "updateSaveStage",
+                    data: args,
+                    cache: false
+                });
+                args = [{ text: "@Resources.Global.GlobalSave",
+                    click: function () { SaveSafetyEquip(); }
+                }];
+                $("#PopupInfos").dialog('open');
+                if (parseInt(document.getElementById("CurrentStage").value) == 1) {
+                    document.getElementById("CurrentStage").value = 3;
+                    ToggleEditSave("safety", true);
+                }
+                else
+                    ToggleEditSave("tasks", false);
+            }
+            return false;
+        }
+
+        function Move(movement, textbutton, TaskID, CurrentOrder) {
+            var s = '@Url.Content("~/images/ajax-loader.gif")';
+            $("#" + textbutton).append('<img src="' + s + '" alt="loading" />');
+            var args = { movement: movement, TaskID: TaskID, lang: "@Resources.Global.GlobalCurrentLang" };
+            {
+                $.ajax({
+                    url: "moveJSATask",
+                    data: args,
+                    cache: false,
+                    success: function (html) {
+                        document.getElementById("aff").innerHTML = "" + html;
+                    }
+                });
+            }
+            return false;
+        }
+
+        function copyJSA(jsaid) {
+            var s = '@Url.Content("~/images/ajax-loader.gif")';
+            $("#JSAHeader").append('<img src="' + s + '" alt="loading" />');
+            var args = { ID: jsaid };
+            $.ajax({
+                url: "copyJsaAttr",
+                data: args,
+                cache: false,
+                success: function (html) {
+                    $("#PopupCopy").dialog('open');
+                    var s = '@Url.Content("~/JSA/Index?JSA_ID=")' + html + "&lang=" + '@Resources.Global.GlobalCurrentLang';
+                    location.href = s;
+                }
+            });
+        }
+        //If you don't understand what i've done, google it !
+    </script>
+}
+<input id="copy" style="@((Model == null ? Html.Raw("display : none;") : Html.Raw(String.Empty)))" type="submit" onclick="@{if (Model != null)
+                                                                                                                            {<text> copyJSA(@Model.IDJSA)</text>} }" value="@Resources.Global.GlobalCopy" />
+<input type="submit" style="@((Model == null || Html.Action("isAdmin").ToString().Equals("false")) ? Html.Raw("display : none;") : Html.Raw(String.Empty))" onclick="return DeleteJSA(@((Model == null) ? 1 : Model.IDJSA))" id="Delete" value="@Resources.Global.GlobalDelete" />
+<input name="CurrentStage" id="CurrentStage" type="hidden" value="@((Model == null) ? 0 : 3)" />
+<div id="FullJSA">
+    <div id="JSAHeader">
+        @{Html.RenderAction("loadJSAHeader", new { JSA_ID = (Model == null) ? 0 : Model.IDJSA, lang = @Resources.Global.GlobalCurrentLang });}
+    </div>
+    <br />
+    @if (Model != null)
+    {
+        <div id="divGenInfos" style="border-width: 1px; border-style: solid; border-color: Gray;
+            padding: 3px 3px 3px 3px; @((Model == null) ? Html.Raw("display : none") : (Model.JSA_Attr.Last().CurrentSaveStage < 3) ? Html.Raw("display : none") : Html.Raw(String.Empty))">
+            <table>
+                <tr>
+                    <td>
+                        <b>@Resources.Global.GeneralInformations</b>
+                    </td>
+                    <td>
+                        <textarea rows="5" cols="50" name="InfoGen" id="InfoGen">@{Html.RenderAction("getInfoGen", new { ID = @Model.IDJSA });}</textarea>
+                    </td>
+                    <td>
+                        <input onclick="saveInfGen()" name="saveInfGen" id="saveInfGen" type="submit" value="@Resources.Global.GlobalSave" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>@Resources.Global.JSADocumentAssociated : </b>
+                    </td>
+                    <td>
+                        @{
+        if (Model != null && (Html.Action("getDoc", new { IDJSA = @Model.IDJSA.ToString() }).ToString() != ""))
+        {
+            string s = Url.Content("~/") + Html.Action("getDoc", new { IDJSA = @Model.IDJSA.ToString() });
+            string s2 = s.Substring(18); //number of characters before the name of the file
+            
+                            <a id="PDF" href="@s" target="_blank">@s2</a>
+                            <input type="submit" onclick="return deleteAssDoc()" value="@Resources.Global.GlobalDelete" />
+        }
+        else
+        {
+                            <form action="" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" id="file" value="Browse" />
+                            <input type="submit" value="@Resources.Global.GlobalUpload (< 4 Mo)" />
+                            <input name="jsaid" id="jsaid" type="hidden" value="@Model.IDJSA.ToString()" />
+                            </form>
+        }
+                        }
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div id="SafetyDev">
+                <form id="deuxButton" action="#">
+                <b>@Resources.Global.JSAIndexSafeTyEquip : </b><a onclick="return EditSafetyEquip()"
+                    href="#" id="aEditSafetyEquip">@Resources.Global.GlobalEdit</a>
+                </form>
+                <br />
+                <span @getDisplayStatus("Helmet") id="HelmetPic">
+                    <img src="@Url.Content("~/images/helmet.png")" alt="Hard Hat" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("Goggle") id="GogglePic">
+                    <img src="@Url.Content("~/images/goggles.png")" alt="Goggles" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("HearPlugs") id="HearPlugsPic">
+                    <img src="@Url.Content("~/images/HearPlugs.png")" alt="Hear Plugs" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("Gloves") id="GlovesPic">
+                    <img src="@Url.Content("~/images/Gloves.png")" alt="Gloves" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("Boots") id="BootsPic">
+                    <img src="@Url.Content("~/images/Boots.png")" alt="Boots" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("BreathingMask") id="BreathingMaskPic">
+                    <img src="@Url.Content("~/images/BreathingMask.png")" alt="Breathing Mask" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("blouse") id="blousePic">
+                    <img src="@Url.Content("~/images/blouse.png")" alt="blouse" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("face") id="facePic">
+                    <img src="@Url.Content("~/images/face.png")" alt="face" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("headcover") id="headcoverPic">
+                    <img src="@Url.Content("~/images/headcover.png")" alt="headcover" width="60" height="60" />&nbsp;</span>
+                <span @getDisplayStatus("item") id="itemPic">
+                    <img src="@Url.Content("~/images/item.png")" alt="item" width="60" height="60" />&nbsp;</span>
+                <br />
+            </div>
+            <br />
+        </div>
+    }
+    <br />
+    <div id="Steps345" style="@((Model == null) ? Html.Raw("display : none; ") : Model.JSA_Attr.Last().CurrentSaveStage >= 1 && Model.JSA_Attr.Last().CurrentSaveStage < 3 ? Html.Raw(String.Empty) : Html.Raw("display : none; "))">
+            <h1>@Resources.Global.JSAIndexAddTask</h1>
+            <h1>@Resources.Global.JSAIndexAddRisk</h1>
+            <h1>@Resources.Global.JSAIndexEnterPrevMes</h1>
+    </div>
+    <div id="Tasks" style="@((Model == null) ? Html.Raw("display : none; ") : Model.JSA_Attr.Last().CurrentSaveStage >= 1 ? Html.Raw(String.Empty) : Html.Raw("display : none; "))">
+        <input name="TaskCnt" id="TaskCnt" type="hidden" value="@((Model == null) ? 0 : Model.Task.Where(t => t.Task_Attr.Last().Active == true).Count())" />
+        <input name="CurrentTaskID" id="CurrentTaskID" type="hidden" value="0" />
+        <input name="CurrentAssRiskID" id="CurrentAssRiskID" type="hidden" value="0" />
+        <input name="CurrentPrevMesID" id="CurrentPrevMesID" type="hidden" value="0" />
+        <div id="aff">
+            @{
+                if (Model != null)
+                {
+                    Html.RenderAction("loadJSA", new { JSAID = Model.IDJSA, lang = @Resources.Global.GlobalCurrentLang });
+                }   
+            }
+        </div>
+        <div id="NewRow" style="float: left">
+            <a onclick="return AddRow()" href="#" class="TasksButtons">@Resources.Global.AddTaskDesc</a>
+        </div>
+        <div style="text-align: right; float: right; vertical-align: top; display: inline-block; float: right; @((Model == null) ? Html.Raw("display : none") : Html.Raw(String.Empty))">
+            <a onclick="return EditTasks()" href="#" id="aEditTasks" style=" @getEditTaskDisplayStatus() : Html.Raw(String.Empty))text-align : right">@Resources.Global.GlobalEdit</a>
+            <a onclick="return @getFinishTaskFunction()" href="#" id="aFinishTasks" style="@getFinishTaskDisplayStatus() : Html.Raw(String.Empty))text-align : right">@Resources.Global.GlobalSave</a>
+        </div>
+    </div>
+    <br />
+</div>
+<br />
+<div id="CompletedSection2" style="@((Model == null) ? Html.Raw("display : none") : (Model.JSA_Attr.Last().CurrentSaveStage < 3) ? Html.Raw("display : none") : Html.Raw(String.Empty))">
+    @{//<form action="@Url.Content("~/JSA/exportPDF")" method="get">
+      
+    }
+    @{//<input type="submit" value="@Resources.Global.GlobalExportPDF" /> return PrintJSA()
+      
+    }
+    <input type="submit" onclick="window.print()" name="PrintJsa" value="@Resources.Global.GlobalPrint" />
+    <input type="text" style="visibility:hidden" name="JSA_ID" value="@{if (Model != null)
+                                                                        {<text>@Model.IDJSA</text>} }" />
+    @{//</form>
+      
+    }
+    <br />
+    <h1>@Resources.Global.JSAStep6</h1>
+    <ul>
+        <li>@Resources.Global.JSAStep6a</li>
+        <li>@Resources.Global.JSAStep6b</li>
+        <li>@Resources.Global.JSAStep6c</li>
+    </ul>
+    <h1>@Resources.Global.JSAStep7</h1>
+    <ul>
+        <li>@Resources.Global.JSAStep7a</li>
+        <li>@Resources.Global.JSAStep7b</li>
+        <li>@Resources.Global.JSAStep7c</li>
+    </ul>
+    <a href="mailto:ReplaceByPeopleConcerned@AGR.GC.CA?subject=@Resources.Global.JSAIndexModifyJSA&body=@Request.Url.ToString()">
+        @Resources.Global.JSAMailTo</a>
+</div>
+<div id="PopupNewTaskName" style="display: none">
+    @Resources.Global.JSAIndexEnterTaskDesc
+    <br />
+    <br />
+    <input type="text" maxlength="50" name="NewName" id="NewName" style="width: 25em;" />
+    <br />
+    <br />
+    @Resources.Global.JSATipTask
+    <ul>
+        <li>@Resources.Global.JSATipTask1</li>
+        <li>@Resources.Global.JSATipTask2</li>
+        <li>@Resources.Global.JSATipTask3</li>
+        <li>@Resources.Global.JSATipTask4</li>
+    </ul>
+</div>
+<div id="PopupNewRisk" style="display: none">
+    @Resources.Global.JSAIndexEnterRisk
+    <br />
+    <input type="text" maxlength="50" name="NewRisk" id="NewRisk" style="width: 25em;" />
+    <br />
+    <br />
+    @Resources.Global.JSATipRisk
+    <br />
+    <a href="@Url.Content("~/Content/pdfs/srisks.docx")">@Resources.Global.AideMemoire</a>
+    <br />
+    <ul>
+        <li>@Resources.Global.JSATipRisk1</li>
+        <li>@Resources.Global.JSATipRisk2</li>
+        <li>@Resources.Global.JSATipRisk3</li>
+    </ul>
+</div>
+<div id="PopupNewPrevMes" style="display: none">
+    @Resources.Global.JSAIndexEnterPrevMes
+    <br />
+    <textarea rows="4" cols="60" name="NewPrevMes" id="NewPrevMes"></textarea>
+    <br />
+    <br />
+    @Resources.Global.JSATipPrevMes
+    <ul>
+        <li>@Resources.Global.JSATipPrevMes1</li>
+        <li>@Resources.Global.JSATipPrevMes2</li>
+        <li>@Resources.Global.JSATipPrevMes3</li>
+        <li>@Resources.Global.JSATipPrevMes4</li>
+    </ul>
+</div>
+<div id="PopupDelete" style="display: none">
+    <div id="PopupDeleteText">
+    </div>
+</div>
+<div id="PopupInfos" style="display: none">
+    @Resources.Global.JSAGoingToStep67
+    <ul>
+        <li>@Resources.Global.JSAGoingToStep671</li>
+        <li>@Resources.Global.JSAGoingToStep672</li>
+        <li>@Resources.Global.JSAGoingToStep673</li>
+    </ul>
+</div>
+<div id="PopupCopy" style="display: none">
+    <b>@Resources.Global.JSACopyInfos</b>
+</div>
+<div id="PopupSafetyEquip" style="display: none">
+    @Resources.Global.JSAIndexChooseSafetyEquip
+    <br />
+    <div style="text-align: left;">
+        <input type="checkbox" name="Helmet" id="Helmet" />
+        <img src="@Url.Content("~/images/helmet.png")" alt="Hard Hat" width="60" height="60" style="vertical-align: middle"/><br />
+        <input type="checkbox" name="Goggles" id="Goggles" />
+        <img src="@Url.Content("~/images/goggles.png")" alt="Goggles" width="60" height="60" style="vertical-align: middle" /><br />
+        <input type="checkbox" name="HearPlugs" id="HearPlugs" />
+        <img src="@Url.Content("~/images/HearPlugs.png")" alt="Hear Plugs" width="60" height="60" style="vertical-align: middle" /><br />
+        <input type="checkbox" name="Gloves" id="Gloves" />
+        <img src="@Url.Content("~/images/Gloves.png")" alt="Gloves" width="60" height="60" style="vertical-align: middle" /><br />
+        <input type="checkbox" name="Boots" id="Boots" />
+        <img src="@Url.Content("~/images/Boots.png")" alt="Boots" width="60" height="60" style="vertical-align: middle" /><br />
+    </div>
+    <div style="text-align: right; margin-top: -21.3em;">
+        <input type="checkbox" name="BreathingMask" id="BreathingMask" />
+        <img src="@Url.Content("~/images/BreathingMask.png")" alt="Breathing Mask" width="60" height="60" style="vertical-align: middle" /><br />
+        <input type="checkbox" name="blouse" id="blouse" />
+        <img src="@Url.Content("~/images/blouse.png")" alt="blouse" width="60" height="60" style="vertical-align: middle" /><br />
+        <input type="checkbox" name="face" id="face" />
+        <img src="@Url.Content("~/images/face.png")" alt="face" width="60" height="60" style="vertical-align: middle" /><br />
+        <input type="checkbox" name="headcover" id="headcover" />
+        <img src="@Url.Content("~/images/headcover.png")" alt="headcover" width="60" height="60" style="vertical-align: middle" /><br />
+        <input type="checkbox" name="item" id="item" />
+        <img src="@Url.Content("~/images/item.png")" alt="item" width="60" height="60" style="vertical-align: middle" /><br />
+    </div>
+</div>
+@functions{
+    IHtmlString getDisplayStatus(string Pic)
+    {
+        if (Model == null)
+            return Html.Raw("style=\"display : none\"");
+        else
+        {
+            switch (Pic)
+            {
+                case "Helmet":
+                    if (Model.JSA_Attr.Last().Helmet == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Helmet)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "Goggles":
+                    if (Model.JSA_Attr.Last().Goggles == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Goggles)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "HearPlugs":
+                    if (Model.JSA_Attr.Last().HearPlugs == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().HearPlugs)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "Gloves":
+                    if (Model.JSA_Attr.Last().Gloves == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Gloves)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "Boots":
+                    if (Model.JSA_Attr.Last().Boots == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Boots)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "BreathingMask":
+                    if (Model.JSA_Attr.Last().BreathingMask == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().BreathingMask)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "blouse":
+                    if (Model.JSA_Attr.Last().Blouse == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Blouse)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "face":
+                    if (Model.JSA_Attr.Last().Face == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Face)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "headcover":
+                    if (Model.JSA_Attr.Last().Headcover == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Headcover)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                case "item":
+                    if (Model.JSA_Attr.Last().Item == null)
+                        return Html.Raw("style=\"display : none\"");
+
+                    if ((bool)Model.JSA_Attr.Last().Item)
+                        return Html.Raw("style=\"display : inline\"");
+                    else
+                        return Html.Raw("style=\"display : none\"");
+
+                default:
+                    return Html.Raw("style=\"display : none\"");
+            }
+        }
+    }
+
+    IHtmlString getFinishTaskDisplayStatus()
+    {
+        if (Model == null)
+            return Html.Raw(String.Empty);
+
+        if (Model.JSA_Attr.Last().CurrentSaveStage > 2)
+            return Html.Raw("display : none;");
+        else
+            return Html.Raw(String.Empty);
+    }
+
+    IHtmlString getEditTaskDisplayStatus()
+    {
+        if (Model == null)
+            return Html.Raw("display : none;");
+
+        if (Model.JSA_Attr.Last().CurrentSaveStage < 3)
+            return Html.Raw("display : none;");
+        else
+            return Html.Raw(String.Empty);
+    }
+
+    IHtmlString getFinishTaskFunction()
+    {
+        if (Model == null)
+            return Html.Raw("FinishTasks()");
+        if (Model.JSA_Attr.Last().CurrentSaveStage == 3)
+            return Html.Raw("SaveTasks()");
+        return Html.Raw("FinishTasks()");
+    }
+
+    IHtmlString getTasksButtonsDisplayStatus(string s)
+    {
+        if (Model == null)
+            return Html.Raw(s);
+        if (Model.JSA_Attr.Last().CurrentSaveStage == 1)
+            return Html.Raw(s);
+        if (Model.JSA_Attr.Last().CurrentSaveStage == 2)
+            if (Model.Task.Where(t => t.Task_Attr.Last().Active == true).Count() == 0)
+                return Html.Raw(s);
+        return Html.Raw("none");
+    }
+
+    IHtmlString getUpDownDisplayStatus()
+    {
+        if (Model == null)
+            return Html.Raw("inline-block");
+        if (Model.JSA_Attr.Last().CurrentSaveStage == 1)
+            return Html.Raw("inline-block");
+        return Html.Raw("none");
+    }
+
+    string getCurrentURL()
+    {
+        string s = @Url.Content("~/JSA/Index?");
+        if (Model != null)
+            s = s + "JSA_ID=" + Model.IDJSA + "&";
+        return s;
+    }
+}
